@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+* {
+    margin: 0%;
+    padding: 0%;
+    text-decoration: none;
+}
+
+:root {
+    --cor-fundo: #000000;
+    --cor-cards: #1A1A1A; 
+    --cor-botoes: #00FF66;
+    --cor-texto-principal: #FFFFFF;
+    --cor-texto-texto-2: #B3B3B3;
+    --cor-texto-auxiliar: #A0A0A0;
+    --fonte-texto: "Inter", sans-serif;
+    --tamanho-titulo-secao: 2.25rem; /* Equivalente a 36px */
+    /*O 400 vai nos textos dos parágrafos e rodapé, o 500 nos links do menu, o 600 nos títulos dos cards e o 700 no título principal e botão.  */
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-principal);
+    font-family: var(--fonte-texto);
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 5rem; /* Remova a segunda linha de padding duplicada */
+    background-color: var(--cor-fundo);
+}
+
+.cabecalho-logo {
+    height: 3.5rem; 
+    width: auto;
+}
+
+.cabecalho-links {
+    display: flex;
+    align-items: center; /* Garante que o texto e o botão fiquem alinhados na mesma linha */
+    gap: 2rem;           /* Espaçamento elegante entre os itens */
+}
+
+.nav-item {
+    color: var(--cor-texto-principal);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+    color: var(--cor-botoes); /* Feedback visual ao passar o mouse */
+}
+
+.cabecalho-links-login {
+    color: var(--cor-botoes);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    border: 0.125rem solid var(--cor-botoes); /* Borda de 2px usando rem */
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.cabecalho-links-login:hover {
+    background-color: var(--cor-botoes);
+    color: var(--cor-fundo); /* Inverte as cores no hover para destaque total */
+}
+
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    max-width: 50rem; /* Aproximadamente 800px */
+    margin: 6rem auto; /* 6rem em cima/baixo para afastar do header e dos cards, auto nas laterais */
+}
+
+.conteudo-titulo {
+    font-size: 3rem;        /* Tamanho de destaque (aprox. 48px) */
+    font-weight: 700;
+    line-height: 1.2;       /* Ajusta o espaçamento entre as linhas do título */
+    margin-bottom: 1.5rem;  /* Afasta o título do parágrafo */
+}
+
+.conteudo-paragrafo {
+    font-size: 1.5rem;    /* Tamanho legível (18px) */
+    color: var(--cor-texto-texto-2);
+    max-width: 45rem;      /* Limita a largura do texto para facilitar a leitura */
+    line-height: 1.6;
+    margin: 0 auto;
+}
+
+#como-funciona {
+    text-align: center;
+    margin-bottom: 6rem; /* Afasta o final dos cards do botão de ação */
+}
+
+#como-funciona h2 {
+    font-size: var(--tamanho-titulo-secao);
+    font-weight: 700;
+    color: var(--cor-texto-principal);
+    margin-bottom: 3.5rem; /* Aumenta o espaço entre o título e os cartões */
+}
+.container-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;       /* Essencial para responsividade: permite quebra de linha */
+    justify-content: center;
+    gap: 1.5rem;           /* Espaçamento entre os cartões */
+    margin-top: 3rem;      /* Afasta o grupo de cartões do título "Como Funciona" */
+}
+
+.como-funciona-cards {
+    background-color: var(--cor-cards);
+    border: 0.0625rem solid #333333; /* Borda sutil para definir o limite do card */
+    border-radius: 1rem;   /* Arredondamento dos cantos */
+    padding: 3rem 1.5rem;  /* Preenchimento interno generoso (48px topo/baixo, 24px lados) */
+    width: 20rem;          /* Largura fixa em rem (320px) */
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* Centraliza todos os elementos filhos horizontalmente */
+    text-align: center;
+    transition: transform 0.3s ease; /* Suaviza o efeito de hover */
+}
+
+.como-funciona-cards:hover {
+    transform: translateY(-0.5rem); /* Eleva o card levemente */
+    border-color: var(--cor-botoes); /* Destaca a borda com a cor principal */
+}
+
+.card-icon {
+    background-color: rgba(0, 255, 102, 0.1); /* Verde com 10% de opacidade */
+    color: var(--cor-botoes);                 /* Cor do ícone vinda da sua variável */
+    padding: 1rem;
+    border-radius: 50%;                       /* Torna o fundo perfeitamente circular */
+    margin-bottom: 1.5rem;                    /* Espaço entre ícone e título */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iniciar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8rem; /* Cria um espaço generoso antes do rodapé */
+}
+
+.iniciar-plano {
+    background-color: var(--cor-botoes);
+    color: var(--cor-fundo);
+    font-size: 1.125rem;   
+    font-weight: 700;       /* Peso máximo para autoridade visual */
+    padding: 1rem 2.5rem;   /* Espaçamento interno generoso em rem */
+    border-radius: 0.75rem; /* Cantos arredondados modernos */
+    display: inline-block;
+    transition: all 0.3s ease; /* Suaviza todas as transições */
+    cursor: pointer;
+}
+
+.iniciar-plano:hover {
+    transform: scale(1.05); /* Aumenta levemente o tamanho */
+    filter: brightness(1.1); /* Deixa o verde levemente mais brilhante */
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 255, 102, 0.3); /* Adiciona um brilho suave ao fundo */
+}
+
+/* Rodapé */
+.rodape {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #111111;
+    padding: 4rem 5rem;
+    border-top: 1px solid var(--cor-cards);
+}
+
+.rodape-logo-container, 
+.rodape-copyright-container, 
+.rodape-links {
+    flex: 1; 
+    display: flex;
+    align-items: center;
+}
+
+.rodape-logo-container img {
+    height: 4rem; /* Agora o seletor está correto: imagem dentro do contêiner */
+    width: auto;
+}
+
+.rodape-copyright-container {
+    justify-content: center; /* Centraliza o texto no bloco do meio */
+}
+
+.rodape-copyright-container p {
+    color: var(--cor-texto-texto-2);
+    font-size: 0.875rem;
+}
+
+.rodape-links {
+    flex-direction: column;
+    align-items: flex-end; /* Alinha os links à direita */
+    gap: 0.5rem;
+}
+
+.rodape-links a {
+    color: var(--cor-texto-texto-2);
+    font-size: 0.875rem;
+    transition: color 0.3s ease;
+}
+
+.rodape-links a:hover {
+    color: var(--cor-botoes); /* Feedback visual no hover */
+}
+
+/* ========================================= */
+/* RESPONSIVIDADE (Tablets e Celulares)      */
+/* ========================================= */
+
+@media screen and (max-width: 768px) {
+    
+    /* 1. Redução dos respiros laterais e empilhamento vertical */
+    .cabecalho, .rodape {
+        padding: 2rem 1.5rem;   /* Reduzimos as laterais drásticamente para aproveitar a tela */
+        flex-direction: column; /* Mudamos a direção do Flexbox: de linha para coluna */
+        gap: 2rem;              /* Espaço entre a logo e os links quando estiverem empilhados */
+    }
+
+    /* 2. Ajuste do Menu de Navegação */
+    .cabecalho-links {
+        flex-direction: column; /* Empilha os links um abaixo do outro */
+        width: 100%;            /* Ocupa toda a largura disponível */
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .cabecalho-links-login {
+        width: auto;             /* Volta ao tamanho automático do texto */
+        display: inline-block;  /* Garante que o padding e formato de caixa funcionem */
+        text-align: center;    
+        padding: 0.75rem 2rem;
+    }
+
+    /* 3. Ajuste da Seção Hero (Textos) */
+    .conteudo {
+        margin: 3rem auto;      /* Reduzimos a margem superior/inferior */
+    }
+
+    .conteudo-titulo {
+        font-size: 2rem;        /* Reduzimos o título para não ocupar a tela inteira de uma vez */
+    }
+
+    .conteudo-paragrafo {
+        font-size: 1.125rem;    /* Reduzimos o parágrafo para melhor leitura móvel */
+    }
+
+    /* 4. Ajuste do Rodapé */
+    .rodape-logo-container, 
+    .rodape-copyright-container, 
+    .rodape-links {
+        align-items: center;    /* Forçamos tudo a ficar centralizado no celular */
+        text-align: center;
+    }
+}
