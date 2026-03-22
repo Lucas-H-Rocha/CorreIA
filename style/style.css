@@ -216,6 +216,95 @@ body {
 /* RESPONSIVIDADE (Tablets e Celulares)      */
 /* ========================================= */
 
+/* Estilização da Calculadora de Pace */
+#calculadora-pace {
+    text-align: center;
+    margin: 4rem auto 6rem; /* Centraliza a seção e dá espaçamento vertical */
+    max-width: 40rem;
+    padding: 0 2rem;
+}
+
+#calculadora-pace h2 {
+    font-size: var(--tamanho-titulo-secao);
+    margin-bottom: 1rem;
+}
+
+.calculadora-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Deixando o campo de entrada (input) com estilo Dark moderno */
+#input-pace {
+    background-color: var(--cor-cards);
+    border: 0.125rem solid #333;
+    border-radius: 0.5rem;
+    color: var(--cor-texto-principal);
+    padding: 0.8rem 1rem;
+    font-size: 1.125rem;
+    font-family: var(--fonte-texto);
+    width: 8rem;
+    transition: border-color 0.3s ease;
+}
+
+#input-pace:focus {
+    outline: none;
+    border-color: var(--cor-botoes); /* Brilha em verde ao clicar */
+}
+
+/* Estilização do Resultado */
+#resultado-calculo {
+    margin-top: 2.5rem;
+    min-height: 5rem; /* Evita que o site "pule" quando o resultado aparece */
+}
+
+.resultado-box {
+    background-color: rgba(0, 255, 102, 0.05);
+    border: 1px dashed var(--cor-botoes);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    display: inline-block;
+}
+
+.resultado-box h3 {
+    color: var(--cor-texto-texto-2);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.resultado-box p {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--cor-botoes);
+}
+
+.botoes-calculadora {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-secundario {
+    background-color: transparent;
+    color: var(--cor-texto-texto-2);
+    border: 1px solid #333;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-secundario:hover {
+    border-color: #ff4d4d; /* Vermelho sutil no hover */
+    color: #ff4d4d;
+}
+
+
 @media screen and (max-width: 768px) {
     
     /* 1. Redução dos respiros laterais e empilhamento vertical */
@@ -261,3 +350,4 @@ body {
         text-align: center;
     }
 }
+

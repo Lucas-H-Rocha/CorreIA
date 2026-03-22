@@ -50,6 +50,23 @@
             </div>
         </div>
     </section>
+
+            <section id="calculadora-pace">
+                <h2>Simulador de Treino</h2>
+                <p>Digite o seu pace atual (min/km) para estimar seu tempo nos 21km:</p>
+                
+                <div class="calculadora-container">
+                    <input type="number" id="input-pace" placeholder="Ex: 5.30" step="0.01" oninput="if(this.value.length > 4) this.value = this.value.slice(0,4);">
+                    
+                    <div class="botoes-calculadora">
+                        <button id="btn-calcular" class="iniciar-plano">Calcular Tempo</button>
+                        <button id="btn-limpar" class="btn-secundario">Limpar</button>
+                    </div>
+                </div>
+
+                <div id="resultado-calculo"></div>
+            </section>
+
             <section class="iniciar">
                 <a class="iniciar-plano" href="">Começar Meu Plano personalizado</a>
             </section>
@@ -69,5 +86,7 @@
                 <a href="tel:+21940028922">telefone: 21 940028922</a>
             </div>
         </footer>
+
+        <script src="js/script.js"></script>
     </body>
 </html>
