@@ -307,47 +307,81 @@ body {
 
 @media screen and (max-width: 768px) {
     
-    /* 1. Redução dos respiros laterais e empilhamento vertical */
+    /* 1. Cabeçalho e Rodapé: Empilha a logo e os links */
     .cabecalho, .rodape {
-        padding: 2rem 1.5rem;   /* Reduzimos as laterais drásticamente para aproveitar a tela */
-        flex-direction: column; /* Mudamos a direção do Flexbox: de linha para coluna */
-        gap: 2rem;              /* Espaço entre a logo e os links quando estiverem empilhados */
+        padding: 2rem 1.5rem;   
+        flex-direction: column; 
+        gap: 2rem;              
     }
 
-    /* 2. Ajuste do Menu de Navegação */
+    /* 2. Menu de Navegação: Links um embaixo do outro e botão ajustado */
     .cabecalho-links {
-        flex-direction: column; /* Empilha os links um abaixo do outro */
-        width: 100%;            /* Ocupa toda a largura disponível */
+        flex-direction: column; 
+        width: 100%;            
         gap: 1.5rem;
         align-items: center;
     }
 
     .cabecalho-links-login {
-        width: auto;             /* Volta ao tamanho automático do texto */
-        display: inline-block;  /* Garante que o padding e formato de caixa funcionem */
-        text-align: center;    
+        width: auto;             
+        display: inline-block;  
         padding: 0.75rem 2rem;
     }
 
-    /* 3. Ajuste da Seção Hero (Textos) */
+    /* 3. Textos Principais: Reduz o tamanho para telas menores */
     .conteudo {
-        margin: 3rem auto;      /* Reduzimos a margem superior/inferior */
+        margin: 3rem auto;      
     }
 
     .conteudo-titulo {
-        font-size: 2rem;        /* Reduzimos o título para não ocupar a tela inteira de uma vez */
+        font-size: 2rem;        
     }
 
     .conteudo-paragrafo {
-        font-size: 1.125rem;    /* Reduzimos o parágrafo para melhor leitura móvel */
+        font-size: 1.125rem;    
     }
 
-    /* 4. Ajuste do Rodapé */
+    /* 4. Cards do "Como Funciona": Agora usando o nome correto do seu HTML */
+    .container-cards {
+        flex-direction: column; /* Empilha os cards verticalmente */
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .como-funciona-cards {
+        width: 90%;             /* Faz o card ocupar quase toda a largura */
+        max-width: 22rem;       /* Mas impede que ele fique exageradamente largo */
+    }
+
+    /* 5. Simulador de Treino: Ajuste para os botões não ficarem "espremidos" */
+    .calculadora-container {
+        flex-direction: column; /* Empilha o campo de texto sobre os botões */
+        gap: 1.5rem;
+    }
+
+    .botoes-calculadora {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;        /* Garante que os botões quebrem linha se necessário */
+        gap: 1rem;
+    }
+
+    #input-pace {
+        width: 100%;            
+        max-width: 15rem;       /* Deixa o campo de digitação em um tamanho bom */
+    }
+
+    /* 6. Alinhamento do Rodapé no Celular */
     .rodape-logo-container, 
     .rodape-copyright-container, 
     .rodape-links {
-        align-items: center;    /* Forçamos tudo a ficar centralizado no celular */
+        align-items: center;    
         text-align: center;
     }
+
+    .rodape-links {
+        align-items: center;    /* Centraliza os links da direita no mobile */
+    }
+    
 }
 
