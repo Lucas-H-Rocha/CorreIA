@@ -6,5 +6,6 @@ O site atualmente é uma interface funcional (Landing Page), mas o plano é tran
 - [x] Estilização e Design Responsivo (CSS).
 - [x] Publicação no GitHub Pages.
 - [x] Implementação da lógica de cálculo de pace com JavaScript.
+- [x] Criação da interface de acesso (Login).
 - [ ] Criação de formulário de contato/cadastro.
 - [ ] Integração com banco de dados para salvar históricos de treino.
