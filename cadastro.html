@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - CorreAI</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body class="corpo-login">
+    <main class="container-login"> <a href="index.html">
+            <img src="img/logo.png" alt="Logo CorreAI" class="logo-login">
+        </a>
+        
+        <form class="formulario-login">
+            <h2>Crie sua conta</h2>
+            <p>Preencha os dados para que nossa IA monte seu plano.</p>
+
+            <div class="campo-input">
+                <label for="nome">Nome Completo</label>
+                <input type="text" id="nome" placeholder="Seu nome" required>
+            </div>
+
+            <div class="campo-input">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" placeholder="seu@email.com" required>
+            </div>
+
+            <div style="display: flex; gap: 1rem;">
+                <div class="campo-input" style="flex: 1;">
+                    <label for="peso">Peso (kg)</label>
+                    <input type="number" id="peso" placeholder="70" step="0.1">
+                </div>
+                <div class="campo-input" style="flex: 1;">
+                    <label for="frequencia">Dias/Semana</label>
+                    <input type="number" id="frequencia" placeholder="3" min="1" max="7">
+                </div>
+            </div>
+
+            <div class="campo-input">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" placeholder="••••••••" required>
+            </div>
+
+            <button type="submit" class="iniciar-plano">Criar Conta</button>
+            
+            <p class="link-cadastro">Já tem conta? <a href="login.html">Faça login</a></p>
+        </form>
+    </main>
+</body>
+</html>
