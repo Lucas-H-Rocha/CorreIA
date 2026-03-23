@@ -304,6 +304,83 @@ body {
     color: #ff4d4d;
 }
 
+/* ========================================= */
+/* TELA DE LOGIN                             */
+/* ========================================= */
+
+.corpo-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ocupa a altura total da tela */
+    background-color: var(--cor-fundo);
+}
+
+.container-login {
+    background-color: var(--cor-cards);
+    padding: 3rem;
+    border-radius: 1rem;
+    border: 1px solid #333;
+    width: 100%;
+    max-width: 25rem; /* Largura máxima da caixa de login */
+    text-align: center;
+}
+
+.logo-login {
+    height: 3rem;
+    margin-bottom: 2rem;
+}
+
+.formulario-login h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.formulario-login p {
+    color: var(--cor-texto-texto-2);
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+}
+
+.campo-input {
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.campo-input label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--cor-texto-principal);
+}
+
+.campo-input input {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #000;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    color: #fff;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura */
+}
+
+.formulario-login .iniciar-plano {
+    width: 100%; /* Botão "Entrar" ocupa toda a largura */
+    border: none;
+    margin-top: 1rem;
+}
+
+.link-cadastro {
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--cor-texto-texto-2);
+}
+
+.link-cadastro a {
+    color: var(--cor-botoes);
+    font-weight: 600;
+}
+
 
 @media screen and (max-width: 768px) {
     
