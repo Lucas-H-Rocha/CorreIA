@@ -3,34 +3,20 @@
 /* ============================================================ */
 
 function mostrarNotificacao(mensagem, tipo = 'sucesso') {
-    // 1. Verifica se o contentor de toasts já existe no HTML. Se não, cria-o dinamicamente.
     let container = document.querySelector('.toast-container');
     if (!container) {
         container = document.createElement('div');
         container.className = 'toast-container';
         document.body.appendChild(container);
     }
-
-    // 2. Cria o elemento da notificação
     const toast = document.createElement('div');
     toast.className = `toast-mensagem toast-${tipo}`;
-    
-    // 3. Define o ícone com base no tipo de feedback
     const icone = tipo === 'erro' ? '❌' : '✅';
     toast.innerHTML = `<span>${icone}</span> <span>${mensagem}</span>`;
-
-    // 4. Adiciona ao contentor na interface
     container.appendChild(toast);
-
-    // 5. Gatilho de animação: Um pequeno atraso é necessário para o CSS processar a transição
-    setTimeout(() => {
-        toast.classList.add('show');
-    }, 10);
-
-    // 6. Autodestruição: Remove o toast após 3.5 segundos para não poluir o DOM
+    setTimeout(() => toast.classList.add('show'), 10);
     setTimeout(() => {
         toast.classList.remove('show');
-        // Aguarda a animação de saída terminar antes de remover do HTML
         setTimeout(() => toast.remove(), 400); 
     }, 3500);
 }
@@ -42,7 +28,6 @@ function mostrarNotificacao(mensagem, tipo = 'sucesso') {
 function gerenciarSessao() {
     const usuario = localStorage.getItem('usuarioLogado');
     const path = window.location.pathname;
-
     const paginasPublicas = ['index.html', 'login.html', 'cadastro.html', '/'];
     const ehPaginaPublica = paginasPublicas.some(p => path.includes(p));
 
@@ -52,9 +37,7 @@ function gerenciarSessao() {
     }
 
     const nomePerfilDisplay = document.getElementById('nome-perfil-display');
-    if (nomePerfilDisplay) {
-        nomePerfilDisplay.innerText = usuario;
-    }
+    if (nomePerfilDisplay) nomePerfilDisplay.innerText = usuario;
 
     const boasVindas = document.getElementById('boas-vindas');
     if (boasVindas && usuario) {
@@ -124,15 +107,10 @@ async function lidarLogin(e) {
             
             mostrarNotificacao(`Bem-vindo de volta, ${data.nome}!`, 'sucesso');
             
-            // Atraso de 1 segundo para o utilizador ler a notificação antes do redirecionamento
             setTimeout(() => {
-                if (data.tipo === 'admin') {
-                    window.location.href = 'admin.html'; 
-                } else {
-                    window.location.href = 'dashboard.html'; 
-                }
+                if (data.tipo === 'admin') window.location.href = 'admin.html'; 
+                else window.location.href = 'dashboard.html'; 
             }, 1000);
-            
         } else {
             mostrarNotificacao(data.mensagem, 'erro');
         }
@@ -143,7 +121,6 @@ async function lidarLogin(e) {
 
 async function lidarCadastro(e) {
     e.preventDefault();
-    
     const nome = document.getElementById('nome').value;
     const email = document.getElementById('email').value;
     const senha = document.getElementById('senha').value;
@@ -151,7 +128,6 @@ async function lidarCadastro(e) {
     const distancia_alvo = document.getElementById('distancia-alvo').value;
     const peso = document.getElementById('peso').value;
     const pace = document.getElementById('pace-cadastro').value;
-
     const frequenciaInput = document.getElementById('frequencia');
     const frequencia = frequenciaInput ? frequenciaInput.value : 3;
 
@@ -176,21 +152,45 @@ async function lidarCadastro(e) {
             localStorage.setItem('tipoUsuario', data.tipo);
             
             mostrarNotificacao(`Conta criada com sucesso! Preparando o seu painel...`, 'sucesso');
-            
-            setTimeout(() => {
-                window.location.href = 'dashboard.html';
-            }, 1500);
+            setTimeout(() => window.location.href = 'dashboard.html', 1500);
         } else {
             mostrarNotificacao("Atenção: " + data.mensagem, 'erro');
         }
     } catch (err) {
-        mostrarNotificacao("Erro ao tentar criar a conta. Verifique a conexão.", 'erro');
+        mostrarNotificacao("Erro ao tentar criar a conta.", 'erro');
     }
 }
 
 /* ============================================================ */
 /* 4. DASHBOARD E REGISTO DE TREINOS                            */
 /* ============================================================ */
+
+async function deletarTreino(treinoId) {
+    // Pede confirmação para evitar cliques acidentais
+    if (!confirm("Tem a certeza que deseja apagar este treino? Esta ação não pode ser desfeita.")) {
+        return;
+    }
+
+    try {
+        const res = await fetch(`http://127.0.0.1:5000/deletar_corrida/${treinoId}`, {
+            method: 'DELETE'
+        });
+        const resposta = await res.json();
+        
+        if (resposta.sucesso) {
+            mostrarNotificacao("Treino apagado com sucesso!", "sucesso");
+            
+            // Recarrega tudo para atualizar a lista, a barra e o gráfico
+            carregarHistorico();
+            carregarProgressoMensal();
+            inicializarGrafico();
+        } else {
+            mostrarNotificacao("Erro ao apagar treino.", "erro");
+        }
+    } catch (err) {
+        mostrarNotificacao("Erro de conexão.", "erro");
+    }
+}
 
 async function carregarHistorico() {
     const userId = localStorage.getItem('usuarioId');
@@ -208,7 +208,7 @@ async function carregarHistorico() {
             if (treinos.length > 0) {
                 const ultimoTreino = treinos[0]; 
                 tituloDashboard.innerText = `Foco IA: ${ultimoTreino.distancia_alvo.toUpperCase()}`;
-                metaDashboard.innerText = ultimoTreino.sugestao;
+                metaDashboard.innerText = ultimoTreino.sugestao_ia; // Corrigido de sugestao para sugestao_ia
             } else {
                 tituloDashboard.innerText = "Bem-vindo ao CorreAI";
                 metaDashboard.innerText = "A nossa IA está pronta para criar o teu plano.";
@@ -227,51 +227,38 @@ async function carregarHistorico() {
             }
 
             listaRegistro.innerHTML = treinos.map(t => {
-                const dataFormatada = new Date(t.data).toLocaleDateString('pt-PT');
+                const dataFormatada = new Date(t.data + 'T12:00:00').toLocaleDateString('pt-PT');
                 return `
                 <div class="treino-item">
-                    <div>
-                        <p class="label-detalhe">Data</p>
-                        <p class="valor-detalhe">${dataFormatada}</p>
+                    <div><p class="label-detalhe">Data</p><p class="valor-detalhe">${dataFormatada}</p></div>
+                    <div><p class="label-detalhe">Objetivo</p><p class="valor-detalhe">${t.distancia_alvo.toUpperCase()}</p></div>
+                    <div><p class="label-detalhe">Tempo Registado</p><p class="valor-detalhe">${t.tempo}</p></div> <div style="grid-column: span 2;"><p class="label-detalhe">Plano IA</p><p class="valor-detalhe" style="color: var(--primary-blue); font-weight: 800;">${t.sugestao_ia}</p></div> <div style="text-align: right;">
+                        <button onclick="deletarTreino(${t.id})" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; padding: 0.5rem; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'" title="Apagar Treino">❌</button>
                     </div>
-                    <div>
-                        <p class="label-detalhe">Objetivo</p>
-                        <p class="valor-detalhe">${t.distancia_alvo.toUpperCase()}</p>
-                    </div>
-                    <div>
-                        <p class="label-detalhe">Pace Base</p>
-                        <p class="valor-detalhe">${t.pace}</p>
-                    </div>
-                    <div style="grid-column: span 2;">
-                        <p class="label-detalhe">Plano de Treino IA</p>
-                        <p class="valor-detalhe" style="color: var(--primary-blue); font-weight: 800;">${t.sugestao}</p>
-                    </div>
-                    <div style="text-align: right;">
-                        <span class="status-icon icon-sucesso" style="background: var(--success-green); color: white; padding: 0.5rem; border-radius: 50%;">✔️</span>
-                    </div>
-                </div>
-                `;
+                </div>`;
             }).join('');
         }
-    } catch (err) {
-        console.error(err);
-    }
+    } catch (err) { console.error(err); }
 }
 
 async function lidarRegistroTreino(e) {
     e.preventDefault();
     const form = e.target;
     
+    // Loading State Blindado: procura em qualquer lugar, não quebra se for null
+    const btnSubmeter = form.querySelector('button') || document.querySelector('.form-actions-full button');
+    let textoOriginal = "Confirmar Treino";
+    if (btnSubmeter) {
+        textoOriginal = btnSubmeter.innerText;
+        btnSubmeter.innerText = "A Guardar... ⏳";
+        btnSubmeter.disabled = true;
+    }
+
     const data = form.querySelector('input[type="date"]').value;
     const distancia = form.querySelector('input[type="number"]').value;
     const tempo = form.querySelector('input[type="time"]').value;
     const rota = document.getElementById('input-rota').value;
     const usuario_id = localStorage.getItem('usuarioId');
-
-    if (!usuario_id) {
-        mostrarNotificacao("Erro: Utilizador não identificado.", 'erro');
-        return;
-    }
 
     try {
         const res = await fetch('http://127.0.0.1:5000/registrar_corrida', {
@@ -279,18 +266,21 @@ async function lidarRegistroTreino(e) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ usuario_id, data, distancia, tempo, rota })
         });
-        
         const resposta = await res.json();
         
         if (resposta.sucesso) {
-            mostrarNotificacao("Treino registado com sucesso! 🏃‍♂️💨", 'sucesso');
+            mostrarNotificacao("Treino registado com sucesso! 🏃‍♂️", 'sucesso');
             form.reset(); 
-            carregarProgressoMensal(); // Atualiza a barra lateral imediatamente
-        } else {
-            mostrarNotificacao("Erro ao registar: " + resposta.mensagem, 'erro');
+            carregarProgressoMensal(); 
+            inicializarGrafico(); // Atualiza o gráfico com o novo treino
         }
     } catch (err) {
         mostrarNotificacao("Erro ao conectar com o servidor.", 'erro');
+    } finally {
+        if (btnSubmeter) {
+            btnSubmeter.innerText = textoOriginal;
+            btnSubmeter.disabled = false;
+        }
     }
 }
 
@@ -311,18 +301,14 @@ async function carregarPerfil() {
             document.getElementById('perfil-email').value = dados.email || '';
             document.getElementById('perfil-idade').value = dados.idade || '';
             document.getElementById('perfil-peso').value = dados.peso_inicial || '';
-            
             const inputMeta = document.getElementById('perfil-meta');
             if (inputMeta) inputMeta.value = dados.meta_mensal || 100;
         }
-    } catch (err) {
-        console.error("Erro ao carregar perfil:", err);
-    }
+    } catch (err) { console.error("Erro ao carregar perfil:", err); }
 }
 
 async function lidarAtualizacaoPerfil(e) {
     e.preventDefault();
-    
     const usuario_id = localStorage.getItem('usuarioId');
     const nome = document.getElementById('perfil-nome').value;
     const email = document.getElementById('perfil-email').value;
@@ -337,19 +323,14 @@ async function lidarAtualizacaoPerfil(e) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ usuario_id, nome, email, idade, peso, meta_mensal })
         });
-        
         const resposta = await res.json();
         if (resposta.sucesso) {
-            mostrarNotificacao("Perfil atualizado com sucesso! ✅", 'sucesso');
+            mostrarNotificacao("Perfil atualizado! ✅", 'sucesso');
             localStorage.setItem('usuarioLogado', nome); 
             gerenciarSessao(); 
-            carregarProgressoMensal(); // Atualiza a barra com a nova meta
-        } else {
-            mostrarNotificacao("Erro ao atualizar: " + resposta.mensagem, 'erro');
+            carregarProgressoMensal();
         }
-    } catch (err) {
-        mostrarNotificacao("Erro ao conectar com o servidor.", 'erro');
-    }
+    } catch (err) { mostrarNotificacao("Erro ao conectar com o servidor.", 'erro'); }
 }
 
 async function carregarProgressoMensal() {
@@ -366,44 +347,59 @@ async function carregarProgressoMensal() {
         let percentagem = (dados.total_corrido / dados.meta) * 100;
         if (percentagem > 100) percentagem = 100;
 
-        labelsMeta.forEach(label => {
-            label.innerText = `${dados.total_corrido} / ${dados.meta} km`;
-        });
-        
-        barrasMeta.forEach(barra => {
-            barra.style.width = `${percentagem}%`;
-        });
-    } catch (err) {
-        console.error("Erro ao carregar progresso:", err);
-    }
+        labelsMeta.forEach(label => label.innerText = `${dados.total_corrido} / ${dados.meta} km`);
+        barrasMeta.forEach(barra => barra.style.width = `${percentagem}%`);
+
+        // Ativa as medalhas na página de conta
+        const medalha5k = document.getElementById('medalha-5k');
+        const medalha100k = document.getElementById('medalha-100k');
+        if (dados.total_corrido >= 5 && medalha5k) {
+            medalha5k.classList.remove('bloqueado');
+            medalha5k.querySelector('.badge-icon').classList.add('icon-verde');
+        }
+        if (dados.total_corrido >= 100 && medalha100k) {
+            medalha100k.classList.remove('bloqueado');
+            medalha100k.querySelector('.badge-icon').classList.add('icon-laranja');
+        }
+    } catch (err) { console.error("Erro ao carregar progresso:", err); }
 }
 
 /* ============================================================ */
-/* 6. GRÁFICOS E SEGURANÇA                                      */
+/* 6. GRÁFICOS DINÂMICOS E SEGURANÇA                            */
 /* ============================================================ */
 
-function inicializarGrafico() {
+async function inicializarGrafico() {
     const canvas = document.getElementById('graficoDashboard');
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['Treino 1', 'Treino 2', 'Treino 3', 'Treino 4', 'Treino 5'],
-            datasets: [{
-                label: 'Ritmo Médio',
-                data: [6.2, 6.0, 5.8, 5.9, 5.5],
-                borderColor: '#1A5CFF',
-                backgroundColor: 'rgba(26, 92, 255, 0.1)',
-                tension: 0.4, fill: true
-            }]
-        },
-        options: {
-            responsive: true, maintainAspectRatio: false,
-            plugins: { legend: { display: false } },
-            scales: { y: { beginAtZero: false } }
-        }
-    });
+    const userId = localStorage.getItem('usuarioId');
+
+    try {
+        const res = await fetch(`http://127.0.0.1:5000/historico?usuario_id=${userId}`);
+        const treinos = await res.json();
+        if (treinos.length === 0) return;
+
+        const ultimosTreinos = treinos.slice(0, 7).reverse(); 
+        const labels = ultimosTreinos.map(t => new Date(t.data + 'T12:00:00').toLocaleDateString('pt-PT', {day:'2-digit', month:'2-digit'}));
+        const distancias = ultimosTreinos.map(t => t.distancia);
+
+        const ctx = canvas.getContext('2d');
+        if (window.meuGrafico) window.meuGrafico.destroy(); // Limpa o gráfico antigo antes de desenhar o novo
+
+        window.meuGrafico = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Distância (km)',
+                    data: distancias,
+                    borderColor: '#1A5CFF',
+                    backgroundColor: 'rgba(26, 92, 255, 0.1)',
+                    tension: 0.4, fill: true
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+        });
+    } catch (err) { console.error(err); }
 }
 
 function toggleSenha(id) {
@@ -426,7 +422,6 @@ function validarRequisitosSenha() {
         document.getElementById('req-comprimento').style.color = temComprimento ? corSucesso : '';
         document.getElementById('req-maiuscula').style.color = temMaiuscula ? corSucesso : '';
         document.getElementById('req-numero').style.color = temNumero ? corSucesso : '';
-        
         const reqEspecial = document.getElementById('req-especial');
         if(reqEspecial) reqEspecial.style.color = temEspecial ? corSucesso : '';
         

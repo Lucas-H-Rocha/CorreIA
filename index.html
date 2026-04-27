@@ -1,75 +1,75 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CorreAI - Inteligência para sua Corrida</title>
-    <link rel="stylesheet" href="style/style.css">
-</head>
-<body class="landing-page">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CorreAI - Inteligência para sua Corrida</title>
+        <link rel="stylesheet" href="style/style.css">
+    </head>
+    <body class="landing-page">
 
-    <header class="landing-header">
-        <a href="index.html" class="header-logo">Corre<span class="logo-ai">AI</span></a>
-        <nav class="landing-nav">
-            <a href="login.html" class="link-secundario">Entrar</a>
-            <a href="cadastro.html" class="btn-primary">Começar Agora</a>
-        </nav>
-    </header>
+        <header class="landing-header">
+            <a href="index.html" class="header-logo">Corre<span class="logo-ai">AI</span></a>
+            <nav class="landing-nav">
+                <a href="login.html" class="link-secundario">Entrar</a>
+                <a href="cadastro.html" class="btn-primary">Começar Agora</a>
+            </nav>
+        </header>
 
-    <main>
-        <section class="hero">
-            <div class="distancias-badges">
-                <span class="badge">5K</span>
-                <span class="badge">10K</span>
-                <span class="badge">21K</span>
-                <span class="badge">42K</span>
-            </div>
-            <h1>Sua Performance Elevada por Inteligência Artificial</h1>
-            <p>Planos de treino dinâmicos e personalizados para qualquer distância. Do seu primeiro quilômetro à sua primeira maratona.</p>
-            <div class="hero-actions">
-                <a href="cadastro.html" class="btn-primary btn-large">Criar Meu Plano Grátis</a>
-            </div>
-        </section>
+        <main>
+            <section class="hero">
+                <div class="distancias-badges">
+                    <span class="badge">5K</span>
+                    <span class="badge">10K</span>
+                    <span class="badge">21K</span>
+                    <span class="badge">42K</span>
+                </div>
+                <h1>Sua Performance Elevada por Inteligência Artificial</h1>
+                <p>Planos de treino dinâmicos e personalizados para qualquer distância. Do seu primeiro quilômetro à sua primeira maratona.</p>
+                <div class="hero-actions">
+                    <a href="cadastro.html" class="btn-primary btn-large">Criar Meu Plano Grátis</a>
+                </div>
+            </section>
 
-        <section class="simulador-ritmo">
-            <div class="cabecalho-simulador">
-                <h3>Simulador de Ritmo</h3>
-                <p>Preveja seu tempo final com base no seu pace médio atual.</p>
-            </div>
-
-            <div class="controles-simulador">
-                <div class="input-group">
-                    <label for="paceInput">Pace Médio (min/km)</label>
-                    <input type="text" id="paceInput" placeholder="Ex: 05:30" maxlength="5">
-                    <span id="erroPace" style="color: #dc3545; font-size: 12px; display: none; margin-top: 5px;">
-                        Formato inválido. Use MM:SS.
-                    </span>
+            <section class="simulador-ritmo">
+                <div class="cabecalho-simulador">
+                    <h3>Simulador de Ritmo</h3>
+                    <p>Preveja seu tempo final com base no seu pace médio atual.</p>
                 </div>
 
-                <div class="input-group">
-                    <label for="distanciaSelect">Distância Alvo</label>
-                    <select id="distanciaSelect">
-                        <option value="5">5 km</option>
-                        <option value="10">10 km</option>
-                        <option value="21.097">21 km (Meia)</option>
-                        <option value="42.195">42.2 km (Maratona)</option>
-                    </select>
+                <div class="controles-simulador">
+                    <div class="input-group">
+                        <label for="paceInput">Pace Médio (min/km)</label>
+                        <input type="text" id="paceInput" placeholder="Ex: 05:30" maxlength="5">
+                        <span id="erroPace" style="color: #dc3545; font-size: 12px; display: none; margin-top: 5px;">
+                            Formato inválido. Use MM:SS.
+                        </span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="distanciaSelect">Distância Alvo</label>
+                        <select id="distanciaSelect">
+                            <option value="5">5 km</option>
+                            <option value="10">10 km</option>
+                            <option value="21.097">21 km (Meia)</option>
+                            <option value="42.195">42.2 km (Maratona)</option>
+                        </select>
+                    </div>
+
+                    <button id="btnSimular" class="btn-primario">Simular Tempo</button>
                 </div>
 
-                <button id="btnSimular" class="btn-primario">Simular Tempo</button>
-            </div>
+                <div class="resultado-simulador" style="text-align: center; margin-top: 2rem;">
+                    <p style="font-size: 14px; color: #666; text-transform: uppercase;">Tempo Estimado</p>
+                    <h2 id="tempoEstimadoDisplay" style="font-size: 2.5rem; color: #0056b3;">--min --s</h2>
+                </div>
+            </section>
+        </main>
 
-            <div class="resultado-simulador" style="text-align: center; margin-top: 2rem;">
-                <p style="font-size: 14px; color: #666; text-transform: uppercase;">Tempo Estimado</p>
-                <h2 id="tempoEstimadoDisplay" style="font-size: 2.5rem; color: #0056b3;">--min --s</h2>
-            </div>
-        </section>
-    </main>
+        <footer class="footer-simples">
+            <p>© 2026 CorreAI. Tecnologia para corredores de alta performance.</p>
+        </footer>
 
-    <footer class="footer-simples">
-        <p>© 2026 CorreAI. Tecnologia para corredores de alta performance.</p>
-    </footer>
-
-    <script src="js/script.js"></script>
-</body>
+        <script src="js/simulador.js"></script> <script src="js/script.js"></script>
+    </body>
 </html>

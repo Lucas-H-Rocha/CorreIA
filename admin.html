@@ -6,9 +6,6 @@
     <title>Gestão Central - Admin CorreAI</title>
     <link rel="stylesheet" href="style/style.css">
     <style>
-        /* ESTILOS EXCLUSIVOS DO PAINEL ADMIN (Surpresa Visual) */
-        
-        /* Grelha dos Cards do Topo */
         .admin-kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
         .kpi-card { background: var(--white); border-radius: var(--radius-lg); padding: 1.8rem; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: flex-start; transition: transform 0.3s ease; box-shadow: var(--shadow-soft); }
         .kpi-card:hover { transform: translateY(-3px); }
@@ -19,10 +16,8 @@
         .bg-laranja-claro { background: rgba(255, 107, 0, 0.1); color: var(--accent-orange); }
         .bg-verde-claro { background: rgba(1, 181, 116, 0.1); color: var(--success-green); }
 
-        /* Layout Grid Dividido (Tabela 60% | Feed 40%) */
         .admin-content-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
         
-        /* Tabela Premium */
         .tabela-container { width: 100%; overflow-x: auto; }
         .tabela-admin { width: 100%; border-collapse: collapse; text-align: left; }
         .tabela-admin th { color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; padding: 1rem 0; border-bottom: 1px solid var(--border-color); font-weight: 700; }
@@ -30,7 +25,6 @@
         .corredor-info { display: flex; align-items: center; gap: 1rem; }
         .avatar-letra { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white; font-family: var(--font-heading); font-size: 1.1rem; }
         
-        /* Timeline Animada */
         .timeline { border-left: 2px solid var(--border-color); padding-left: 1.5rem; margin-left: 1rem; margin-top: 1rem; }
         .timeline-item { position: relative; margin-bottom: 1.5rem; }
         .timeline-item::before { content: ''; position: absolute; left: -1.9rem; top: 0.2rem; width: 12px; height: 12px; border-radius: 50%; background: var(--accent-orange); border: 3px solid var(--white); box-shadow: 0 0 0 4px rgba(255,107,0,0.1); }
@@ -38,15 +32,20 @@
         .timeline-texto { font-size: 0.9rem; font-weight: 500; }
         .texto-destaque { color: var(--primary-blue); font-weight: 700; }
 
-        /* Danger Zone */
         .danger-zone { background: #FFF4F4; border: 1px solid #FDCED0; padding: 2rem; border-radius: var(--radius-lg); position: relative; overflow: hidden; }
         .danger-zone::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--danger-red); }
         .danger-header { display: flex; align-items: center; gap: 0.8rem; color: var(--danger-red); margin-bottom: 1rem; }
         .danger-header h3 { color: var(--danger-red); margin: 0; }
         
-        @media (max-width: 1024px) {
-            .admin-content-grid { grid-template-columns: 1fr; }
-        }
+        /* Sistema de Abas */
+        .aba { display: none; animation: fadeIn 0.3s ease-in-out; }
+        .aba.ativa { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .btn-apagar { background: none; border: none; font-size: 1.2rem; cursor: pointer; transition: 0.2s; padding: 0.5rem; }
+        .btn-apagar:hover { transform: scale(1.2); }
+
+        @media (max-width: 1024px) { .admin-content-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body class="dashboard-page">
@@ -57,13 +56,13 @@
         </div>
         
         <nav class="sidebar-nav">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link active" onclick="mudarAba('aba-visao-geral', this)">
                 <span class="icon">📊</span> Visão Geral
             </a>
-            <a href="#" class="nav-link" onclick="alert('Área de gestão completa em desenvolvimento.');">
+            <a href="#" class="nav-link" onclick="mudarAba('aba-gestao', this)">
                 <span class="icon">👥</span> Gestão de Utilizadores
             </a>
-            <a href="#" class="nav-link" onclick="alert('Logs detalhados de servidor em desenvolvimento.');">
+            <a href="#" class="nav-link" onclick="mudarAba('aba-logs', this)">
                 <span class="icon">📑</span> Logs do Sistema
             </a>
         </nav>
@@ -75,7 +74,7 @@
                     <p style="font-size: 0.8rem; font-weight: 700; color: var(--text-main);">Admin</p>
                     <p style="font-size: 0.7rem; color: var(--text-secondary);">admin@correai.com</p>
                 </div>
-                <button onclick="sair()" style="background: none; border: none; cursor: pointer; color: var(--text-secondary);">🚪</button>
+                <button onclick="sair()" style="background: none; border: none; cursor: pointer; color: var(--danger-red); font-weight: bold; font-size: 0.85rem;">Sair</button>
             </div>
         </div>
     </aside>
@@ -86,93 +85,111 @@
                 <h1>Gestão Central de Treinos</h1>
                 <p class="texto-secundario">Monitorização de performance do sistema e uso da Inteligência Artificial.</p>
             </div>
-            <div class="header-actions">
+            <div class="header-actions" style="display: flex; gap: 1.5rem; align-items: center;">
                 <button class="btn-secundario" onclick="window.location.reload();">🔄 Atualizar Dados</button>
+                <button onclick="sair()" class="btn-icon" style="color: var(--danger-red); font-weight: bold; background: none; border: none; cursor: pointer; font-size: 1rem;">Sair</button>
             </div>
         </header>
 
-        <section class="admin-kpi-grid">
-            <div class="kpi-card">
-                <div class="kpi-info">
-                    <h4>Total de Corredores</h4>
-                    <div class="kpi-valor" id="kpi-users">0</div>
+        <div id="aba-visao-geral" class="aba ativa">
+            <section class="admin-kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-info"><h4>Total de Corredores</h4><div class="kpi-valor" id="kpi-users">0</div></div>
+                    <div class="kpi-icon bg-azul-claro">👥</div>
                 </div>
-                <div class="kpi-icon bg-azul-claro">👥</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-info">
-                    <h4>Treinos Gerados IA</h4>
-                    <div class="kpi-valor" id="kpi-treinos">0</div>
+                <div class="kpi-card">
+                    <div class="kpi-info"><h4>Treinos Gerados IA</h4><div class="kpi-valor" id="kpi-treinos">0</div></div>
+                    <div class="kpi-icon bg-laranja-claro">🧠</div>
                 </div>
-                <div class="kpi-icon bg-laranja-claro">🧠</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-info">
-                    <h4>Kms Corridos (Mês)</h4>
-                    <div class="kpi-valor" id="kpi-km">0 <span style="font-size: 1rem; color: var(--text-secondary);">km</span></div>
+                <div class="kpi-card">
+                    <div class="kpi-info"><h4>Kms Corridos (Mês)</h4><div class="kpi-valor" id="kpi-km">0 <span style="font-size: 1rem; color: var(--text-secondary);">km</span></div></div>
+                    <div class="kpi-icon bg-verde-claro">📈</div>
                 </div>
-                <div class="kpi-icon bg-verde-claro">📈</div>
-            </div>
-        </section>
+            </section>
 
-        <section class="admin-content-grid">
-            
+            <section class="admin-content-grid">
+                <div class="card">
+                    <h3 style="margin-bottom: 1.5rem;">Últimos Corredores Registados</h3>
+                    <div class="tabela-container">
+                        <table class="tabela-admin">
+                            <thead>
+                                <tr><th>Corredor</th><th>Objetivo</th><th>Data de Registo</th><th>Status</th></tr>
+                            </thead>
+                            <tbody id="tabela-usuarios-resumo">
+                                <tr><td colspan="4" style="text-align: center; color: var(--text-secondary);">A carregar dados...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3 style="margin-bottom: 0.5rem;">Feed de Atividade IA</h3>
+                    <p class="texto-secundario" style="font-size: 0.8rem; margin-bottom: 1.5rem;">Últimos 5 treinos gerados.</p>
+                    <div class="timeline" id="timeline-resumo"></div>
+                </div>
+            </section>
+
+            <section class="danger-zone">
+                <div class="danger-header"><span style="font-size: 1.5rem;">⚠️</span><h3>Manutenção de Base de Dados</h3></div>
+                <p class="texto-secundario" style="margin-bottom: 1.5rem;">Esta ação irá remover permanentemente todo o histórico de treinos. Esta operação é <strong>irreversível</strong>.</p>
+                <button id="btn-danger" class="btn-primary" style="background: var(--danger-red);" onclick="confirmarLimpeza()">Limpar Base de Dados SQL</button>
+            </section>
+        </div>
+
+        <div id="aba-gestao" class="aba">
             <div class="card">
-                <h3 style="margin-bottom: 1.5rem;">Últimos Corredores Registados</h3>
+                <h3 style="margin-bottom: 0.5rem;">Gestão Completa de Utilizadores</h3>
+                <p class="texto-secundario" style="margin-bottom: 2rem;">Controle de contas, perfis e permissões dos corredores.</p>
                 <div class="tabela-container">
                     <table class="tabela-admin">
                         <thead>
-                            <tr>
-                                <th>Corredor</th>
-                                <th>Meta Base</th>
-                                <th>Data de Registo</th>
-                                <th>Status</th>
-                            </tr>
+                            <tr><th>Corredor</th><th>Email</th><th>Objetivo</th><th>Ações</th></tr>
                         </thead>
-                        <tbody id="tabela-usuarios-body">
-                            <tr><td colspan="4" style="text-align: center; color: var(--text-secondary);">A carregar dados do SQL...</td></tr>
+                        <tbody id="tabela-usuarios-completa">
+                            <tr><td colspan="4" style="text-align: center; color: var(--text-secondary);">A carregar dados...</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+        </div>
 
+        <div id="aba-logs" class="aba">
             <div class="card">
-                <h3 style="margin-bottom: 0.5rem;">Feed de Atividade IA</h3>
-                <p class="texto-secundario" style="font-size: 0.8rem; margin-bottom: 1.5rem;">Últimos treinos gerados pelo motor Python.</p>
-                <div class="timeline" id="timeline-atividades">
-                    <p class="status-carregamento">A carregar logs da IA...</p>
+                <h3 style="margin-bottom: 0.5rem;">Logs Detalhados do Sistema</h3>
+                <p class="texto-secundario" style="margin-bottom: 2rem;">Registo completo de toda a atividade do motor de Inteligência Artificial.</p>
+                <div class="tabela-container">
+                    <table class="tabela-admin">
+                        <thead>
+                            <tr><th>Data e Hora</th><th>Corredor</th><th>Distância Executada</th><th>Parecer da IA</th></tr>
+                        </thead>
+                        <tbody id="tabela-logs-completa">
+                            <tr><td colspan="4" style="text-align: center; color: var(--text-secondary);">A carregar logs...</td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            
-        </section>
-
-        <section class="danger-zone">
-            <div class="danger-header">
-                <span style="font-size: 1.5rem;">⚠️</span>
-                <h3>Manutenção de Base de Dados</h3>
-            </div>
-            <p class="texto-secundario" style="margin-bottom: 1.5rem; max-width: 800px;">
-                Esta ação irá remover permanentemente todo o histórico de treinos gerados pela IA no banco de dados SQLite. Esta operação é <strong>irreversível</strong>. Certifique-se de que é realmente necessário.
-            </p>
-            <button id="btn-danger" class="btn-primary" style="background: var(--danger-red);" onclick="confirmarLimpeza()">Limpar Base de Dados SQL</button>
-        </section>
+        </div>
 
     </main>
 
     <script>
-        // Proteção de Rota
         if (localStorage.getItem('tipoUsuario') !== 'admin') {
             alert("Acesso Negado! Área restrita a Administradores.");
             window.location.href = 'login.html';
         }
 
-        // Função de Sair
-        function sair() {
-            localStorage.clear();
-            window.location.href = 'index.html';
+        function sair() { localStorage.clear(); window.location.href = 'index.html'; }
+
+        // Mudar entre as Abas (SPA)
+        function mudarAba(idAba, elementoNav) {
+            // Remove a classe 'ativa' de todas as abas e links
+            document.querySelectorAll('.aba').forEach(aba => aba.classList.remove('ativa'));
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            
+            // Ativa a aba clicada
+            document.getElementById(idAba).classList.add('ativa');
+            elementoNav.classList.add('active');
         }
 
-        // Função Criativa: Gerar Cor a partir do nome
         function gerarCorAvatar(nome) {
             const cores = ['#1A5CFF', '#FF6B00', '#01B574', '#7000FF', '#FF005C', '#00C2FF'];
             let soma = 0;
@@ -180,101 +197,121 @@
             return cores[soma % cores.length];
         }
 
-        // 1. Carregar Estatísticas e Tabela (Nova Rota /admin/stats)
+        // CARREGAR DADOS GERAIS (E PREENCHER AS DUAS ABAS DE UTILIZADORES)
         async function carregarDashboardAdmin() {
             try {
                 const res = await fetch('http://127.0.0.1:5000/admin/stats');
                 const data = await res.json();
                 
-                // Preencher Top Cards
                 document.getElementById('kpi-users').innerText = data.total_users;
                 document.getElementById('kpi-treinos').innerText = data.total_treinos;
                 document.getElementById('kpi-km').innerHTML = `${data.total_km} <span style="font-size: 1rem; color: var(--text-secondary);">km</span>`;
 
-                // Preencher Tabela de Utilizadores
-                const tbody = document.getElementById('tabela-usuarios-body');
+                const tbodyResumo = document.getElementById('tabela-usuarios-resumo');
+                const tbodyCompleta = document.getElementById('tabela-usuarios-completa');
+                
                 if(data.usuarios.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">Nenhum utilizador registado.</td></tr>';
+                    tbodyResumo.innerHTML = '<tr><td colspan="4" style="text-align:center;">Nenhum utilizador.</td></tr>';
+                    tbodyCompleta.innerHTML = '<tr><td colspan="4" style="text-align:center;">Nenhum utilizador.</td></tr>';
                 } else {
-                    tbody.innerHTML = data.usuarios.map(u => {
+                    let htmlResumo = '';
+                    let htmlCompleto = '';
+
+                    data.usuarios.forEach(u => {
                         const inicial = u.nome.charAt(0).toUpperCase();
                         const cor = gerarCorAvatar(u.nome);
                         const dataFormatada = new Date(u.criado_em).toLocaleDateString('pt-PT', { day: '2-digit', month: 'short', year: 'numeric' });
+                        const objText = u.objetivo ? u.objetivo.toUpperCase() : 'N/A';
                         
-                        return `
+                        // HTML para Visão Geral
+                        htmlResumo += `
                         <tr>
-                            <td>
-                                <div class="corredor-info">
-                                    <div class="avatar-letra" style="background-color: ${cor};">${inicial}</div>
-                                    <div>
-                                        <p style="font-weight: 600;">${u.nome}</p>
-                                        <p style="font-size: 0.75rem; color: var(--text-secondary);">${u.email}</p>
-                                    </div>
-                                </div>
-                            </td>
-                            <td style="font-weight: 600;">${u.meta_mensal} KM</td>
+                            <td><div class="corredor-info"><div class="avatar-letra" style="background-color: ${cor};">${inicial}</div>
+                            <div><p style="font-weight: 600;">${u.nome}</p><p style="font-size: 0.75rem; color: var(--text-secondary);">${u.email}</p></div></div></td>
+                            <td style="font-weight: 600; color: var(--primary-blue);">${objText}</td>
                             <td>${dataFormatada}</td>
                             <td><span class="tag-status status-sucesso">Ativo</span></td>
-                        </tr>
-                        `;
-                    }).join('');
+                        </tr>`;
+
+                        // HTML para Gestão de Utilizadores (Com botão de apagar)
+                        htmlCompleto += `
+                        <tr>
+                            <td><div class="corredor-info"><div class="avatar-letra" style="background-color: ${cor};">${inicial}</div><p style="font-weight: 600;">${u.nome}</p></div></td>
+                            <td>${u.email}</td>
+                            <td style="font-weight: 600;">${objText}</td>
+                            <td><button class="btn-apagar" onclick="apagarUtilizador(${u.id}, '${u.nome}')" title="Apagar Utilizador">🗑️</button></td>
+                        </tr>`;
+                    });
+
+                    tbodyResumo.innerHTML = htmlResumo;
+                    tbodyCompleta.innerHTML = htmlCompleto;
                 }
-            } catch (err) {
-                console.error("Erro ao carregar stats:", err);
-            }
+            } catch (err) { console.error("Erro stats:", err); }
         }
 
-        // 2. Carregar Feed de Atividade (Antiga lista do admin.html)
+        // CARREGAR DADOS DE LOGS (PREENCHER TIMELINE E TABELA COMPLETA)
         async function carregarFeedIA() {
             try {
                 const res = await fetch(`http://127.0.0.1:5000/historico?tipo=admin`);
                 const treinos = await res.json();
-                const timeline = document.getElementById('timeline-atividades');
+                const timeline = document.getElementById('timeline-resumo');
+                const tbodyLogs = document.getElementById('tabela-logs-completa');
                 
                 if (treinos.length === 0) {
                     timeline.innerHTML = "<p class='texto-secundario'>Nenhuma atividade recente.</p>";
+                    tbodyLogs.innerHTML = "<tr><td colspan='4' style='text-align:center;'>Nenhum log disponível.</td></tr>";
                     return;
                 }
 
-                // Pega apenas os últimos 5 para não quebrar o layout
+                // Preencher Timeline da Visão Geral (apenas 5)
                 const ultimos = treinos.slice(0, 5);
-
                 timeline.innerHTML = ultimos.map(t => {
-                    const hora = new Date(t.data).toLocaleTimeString('pt-PT', { hour: '2-digit', minute: '2-digit' });
-                    // Extrai apenas a parte interessante da sugestão da IA (Ex: "10.5km")
-                    const kmSugerido = t.sugestao.split(': ')[1] || t.sugestao;
-
-                    return `
-                    <div class="timeline-item">
-                        <span class="timeline-time">${hora}</span>
-                        <p class="timeline-texto">A IA gerou um plano de <span class="texto-destaque">${kmSugerido}</span> para <span style="font-weight: 600;">${t.nome}</span>.</p>
-                    </div>
-                    `;
+                    const hora = new Date(t.data + 'T12:00:00').toLocaleTimeString('pt-PT', { hour: '2-digit', minute: '2-digit' });
+                    const kmSugerido = t.sugestao_ia || t.sugestao || 'Nova Meta';
+                    return `<div class="timeline-item"><span class="timeline-time">${hora}</span>
+                            <p class="timeline-texto">A IA atuou em <span style="font-weight: 600;">${t.nome}</span>: <span class="texto-destaque">${kmSugerido}</span></p></div>`;
                 }).join('');
-            } catch {
-                document.getElementById('timeline-atividades').innerHTML = "Erro ao conectar ao motor IA.";
+
+                // Preencher Tabela de Logs Completa
+                tbodyLogs.innerHTML = treinos.map(t => {
+                    const dataCompleta = new Date(t.data + 'T12:00:00').toLocaleDateString('pt-PT') + ' às ' + new Date(t.data + 'T12:00:00').toLocaleTimeString('pt-PT', { hour: '2-digit', minute: '2-digit' });
+                    return `
+                    <tr>
+                        <td>${dataCompleta}</td>
+                        <td style="font-weight: 600;">${t.nome}</td>
+                        <td>${t.distancia} KM</td>
+                        <td style="color: var(--primary-blue); font-weight: 500;">${t.sugestao_ia || t.sugestao || 'N/A'}</td>
+                    </tr>`;
+                }).join('');
+
+            } catch { document.getElementById('timeline-resumo').innerHTML = "Erro ao conectar."; }
+        }
+
+        // APAGAR UTILIZADOR
+        async function apagarUtilizador(id, nome) {
+            if(confirm(`ATENÇÃO!\nTem a certeza que deseja APAGAR o utilizador "${nome}" e todo o seu histórico de treinos?\nEsta ação é irreversível.`)) {
+                try {
+                    const res = await fetch(`http://127.0.0.1:5000/admin/deletar_usuario/${id}`, { method: 'DELETE' });
+                    const resposta = await res.json();
+                    if(resposta.sucesso) {
+                        alert(resposta.mensagem);
+                        carregarDashboardAdmin(); // Recarrega as tabelas e KPIs
+                        carregarFeedIA();
+                    }
+                } catch (err) { alert("Erro de conexão ao tentar apagar utilizador."); }
             }
         }
 
-        // 3. Sistema de Dupla Confirmação para Apagar
+        // SISTEMA DUPLA CONFIRMAÇÃO PARA LIMPAR TUDO
         let confirmacaoAtiva = false;
         async function confirmarLimpeza() {
             const btn = document.getElementById('btn-danger');
-            
             if (!confirmacaoAtiva) {
-                // Primeiro Clique: Avisa o utilizador
                 btn.innerText = "Tem a certeza? Clique novamente para apagar.";
-                btn.style.background = "#8B0000"; // Vermelho muito escuro
+                btn.style.background = "#8B0000"; 
                 confirmacaoAtiva = true;
-                
-                // Se ele não clicar em 4 segundos, cancela o estado de alerta
-                setTimeout(() => {
-                    btn.innerText = "Limpar Base de Dados SQL";
-                    btn.style.background = "var(--danger-red)";
-                    confirmacaoAtiva = false;
-                }, 4000);
+                setTimeout(() => { btn.innerText = "Limpar Base de Dados SQL"; btn.style.background = "var(--danger-red)"; confirmacaoAtiva = false; }, 4000);
             } else {
-                // Segundo Clique: Executa a ação
                 btn.innerText = "A apagar...";
                 await fetch('http://127.0.0.1:5000/admin/limpar', { method: 'DELETE' });
                 alert("Limpeza efetuada com sucesso!");
@@ -282,7 +319,6 @@
             }
         }
 
-        // Inicializar Painel
         document.addEventListener('DOMContentLoaded', () => {
             carregarDashboardAdmin();
             carregarFeedIA();
