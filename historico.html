@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico - CorreAI</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body class="corpo-login">
+    <main class="container-login" style="max-width: 50rem;">
+        <img src="img/logo.png" alt="Logo CorreAI" class="logo-login">
+        <h2>Seu Histórico de Treinos</h2>
+        <div id="lista-historico" style="margin-top: 2rem; text-align: left;">
+            <p>Carregando histórico...</p>
+        </div>
+        <button onclick="window.location.href='index.html'" class="btn-secundario" style="margin-top: 2rem;">Voltar ao Início</button>
+    </main>
+
+    <script>
+        async function carregar() {
+            const container = document.getElementById('lista-historico');
+            try {
+                const res = await fetch('http://127.0.0.1:5000/historico');
+                const dados = await res.json();
+                if (dados.historico.length === 0) {
+                    container.innerHTML = "<p>Nenhum treino registrado.</p>";
+                    return;
+                }
+                container.innerHTML = dados.historico.reverse().map(l => 
+                    `<div style="background: #000; padding: 1rem; border-radius: 0.5rem; margin-bottom: 0.5rem; border-left: 4px solid var(--cor-botoes); font-size: 0.85rem;">${l}</div>`
+                ).join('');
+            } catch {
+                container.innerHTML = "<p>Erro ao conectar com o servidor.</p>";
+            }
+        }
+        carregar();
+    </script>
+</body>
+</html>

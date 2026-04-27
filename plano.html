@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Seu Plano - CorreAI</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body class="corpo-login">
+    <main class="container-login" style="max-width: 40rem;">
+        <img src="img/logo.png" alt="Logo CorreAI" class="logo-login">
+        <h2>Seu Plano de Treino IA</h2>
+        <div class="resultado-box" style="margin-top: 2rem; width: 100%; border: 1px solid var(--cor-botoes);">
+            <p id="texto-plano" style="font-size: 1.5rem; color: var(--cor-botoes); font-weight: 700;">Gerando plano...</p>
+        </div>
+        <button onclick="window.location.href='index.html'" class="iniciar-plano" style="margin-top: 2rem; width: 100%;">Voltar ao Início</button>
+    </main>
+    <script>
+        const p = localStorage.getItem('planoIA');
+        if (p) document.getElementById('texto-plano').innerText = p;
+    </script>
+</body>
+</html>

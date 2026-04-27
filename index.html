@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CorreAI</title>
+        <link rel="stylesheet" href="style/style.css">
+    </head>
+    <body>
+        <header>
+            <nav class="cabecalho">
+                <img class="cabecalho-logo" src="img/logo.png" alt="Logotipo CorreAI">
+                <div class="cabecalho-links">
+                    <a href="#como-funciona" class="nav-item">Como Funciona</a>
+                    <a href="historico.html" class="nav-item">Meu Histórico</a>
+                    <a class="cabecalho-links-login" href="login.html">Entrar</a>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section class="conteudo">
+                <h1 class="conteudo-titulo">CorreAI: Sua Jornada para o Sucesso na Meia Maratona, Otimizada por IA</h1>
+                <p class="conteudo-paragrafo">Descubra como nossa inteligência artificial calcula a distância ideal de treino para melhorar seu desempenho nos 21km.</p>
+            </section>
+    <section id="como-funciona">
+        <h2>Como Funciona</h2>
+        <div class="container-cards">
+            <div class="como-funciona-cards">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </div>
+                <h4>1. Conte sobre você</h4>
+                <p>Insira seu pace atual, histórico de corrida e dias disponíveis para treinar.</p>
+            </div>
+
+            <div class="como-funciona-cards">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5a2.5 2.5 0 0 0-4.96-.46 2.5 2.5 0 0 0-1.98 3 2.5 2.5 0 0 0-1.32 4.24 3 3 0 0 0 .34 5.58 2.5 2.5 0 0 0 2.96 3.08 2.5 2.5 0 0 0 4.91.05L12 20V4.5Z"></path><path d="M16 8V5c0-1.1.9-2 2-2"></path><path d="M12 13h4"></path><path d="M12 18h6a2 2 0 0 1 2 2v1"></path><path d="M12 8h8"></path><path d="M20.5 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0Z"></path><path d="M16.5 13a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0Z"></path><path d="M18.5 3a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0Z"></path></svg>
+                </div>
+                <h4>2. Nossa IA Calcula</h4>
+                <p>Nossos algoritmos analisam seus dados para criar um plano de distância personalizado e eficiente.</p>
+            </div>
+
+            <div class="como-funciona-cards">
+                <div class="card-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>
+                </div>
+                <h4>3. Alcance seu Objetivo</h4>
+                <p>Siga o plano de treino inteligente e chegue à sua meia maratona com o melhor desempenho possível.</p>
+            </div>
+        </div>
+    </section>
+
+            <section id="calculadora-pace">
+                <h2>Simulador de Treino</h2>
+                <p>Digite o seu pace atual (min/km) para estimar seu tempo nos 21km:</p>
+                
+                <div class="calculadora-container">
+                    <input type="number" id="input-pace" placeholder="Ex: 5.30" step="0.01" oninput="if(this.value.length > 4) this.value = this.value.slice(0,4);">
+                    
+                    <div class="botoes-calculadora">
+                        <button id="btn-calcular" class="iniciar-plano">Calcular Tempo</button>
+                        <button id="btn-limpar" class="btn-secundario">Limpar</button>
+                    </div>
+                </div>
+
+                <div id="resultado-calculo"></div>
+            </section>
+
+            <section class="iniciar">
+                <a class="iniciar-plano" href="cadastro.html">Começar Meu Plano personalizado</a>
+            </section>
+        </main>
+        <footer class="rodape">
+            <div class="rodape-logo-container">
+                <img src="img/logo.png" alt="Logotipo CorreAI">
+            </div>
+
+            <div class="rodape-copyright-container">
+                <p>© 2026 CorreAi. Todos os direitos reservados.</p>
+            </div>
+            
+            <div class="rodape-links">
+                <a href="">Sobre Nós</a>
+                <a href="">Política de Privacidade</a>
+                <a href="tel:+21940028922">telefone: 21 940028922</a>
+            </div>
+        </footer>
+
+        <script src="js/script.js"></script>
+    </body>
+</html>

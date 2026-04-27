@@ -1,0 +1,521 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+* {
+    margin: 0%;
+    padding: 0%;
+    text-decoration: none;
+}
+
+:root {
+    --cor-fundo: #000000;
+    --cor-cards: #1A1A1A; 
+    --cor-botoes: #00FF66;
+    --cor-texto-principal: #FFFFFF;
+    --cor-texto-texto-2: #B3B3B3;
+    --cor-texto-auxiliar: #A0A0A0;
+    --fonte-texto: "Inter", sans-serif;
+    --tamanho-titulo-secao: 2.25rem; /* Equivalente a 36px */
+    /*O 400 vai nos textos dos parágrafos e rodapé, o 500 nos links do menu, o 600 nos títulos dos cards e o 700 no título principal e botão.  */
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-principal);
+    font-family: var(--fonte-texto);
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 5rem; /* Remova a segunda linha de padding duplicada */
+    background-color: var(--cor-fundo);
+}
+
+.cabecalho-logo {
+    height: 3.5rem; 
+    width: auto;
+}
+
+.cabecalho-links {
+    display: flex;
+    align-items: center; /* Garante que o texto e o botão fiquem alinhados na mesma linha */
+    gap: 2rem;           /* Espaçamento elegante entre os itens */
+}
+
+.nav-item {
+    color: var(--cor-texto-principal);
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+    color: var(--cor-botoes); /* Feedback visual ao passar o mouse */
+}
+
+.cabecalho-links-login {
+    color: var(--cor-botoes);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    border: 0.125rem solid var(--cor-botoes); /* Borda de 2px usando rem */
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.cabecalho-links-login:hover {
+    background-color: var(--cor-botoes);
+    color: var(--cor-fundo); /* Inverte as cores no hover para destaque total */
+}
+
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    max-width: 50rem; /* Aproximadamente 800px */
+    margin: 6rem auto; /* 6rem em cima/baixo para afastar do header e dos cards, auto nas laterais */
+}
+
+.conteudo-titulo {
+    font-size: 3rem;        /* Tamanho de destaque (aprox. 48px) */
+    font-weight: 700;
+    line-height: 1.2;       /* Ajusta o espaçamento entre as linhas do título */
+    margin-bottom: 1.5rem;  /* Afasta o título do parágrafo */
+}
+
+.conteudo-paragrafo {
+    font-size: 1.5rem;    /* Tamanho legível (18px) */
+    color: var(--cor-texto-texto-2);
+    max-width: 45rem;      /* Limita a largura do texto para facilitar a leitura */
+    line-height: 1.6;
+    margin: 0 auto;
+}
+
+#como-funciona {
+    text-align: center;
+    margin-bottom: 6rem; /* Afasta o final dos cards do botão de ação */
+}
+
+#como-funciona h2 {
+    font-size: var(--tamanho-titulo-secao);
+    font-weight: 700;
+    color: var(--cor-texto-principal);
+    margin-bottom: 3.5rem; /* Aumenta o espaço entre o título e os cartões */
+}
+.container-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;       /* Essencial para responsividade: permite quebra de linha */
+    justify-content: center;
+    gap: 1.5rem;           /* Espaçamento entre os cartões */
+    margin-top: 3rem;      /* Afasta o grupo de cartões do título "Como Funciona" */
+}
+
+.como-funciona-cards {
+    background-color: var(--cor-cards);
+    border: 0.0625rem solid #333333; /* Borda sutil para definir o limite do card */
+    border-radius: 1rem;   /* Arredondamento dos cantos */
+    padding: 3rem 1.5rem;  /* Preenchimento interno generoso (48px topo/baixo, 24px lados) */
+    width: 20rem;          /* Largura fixa em rem (320px) */
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* Centraliza todos os elementos filhos horizontalmente */
+    text-align: center;
+    transition: transform 0.3s ease; /* Suaviza o efeito de hover */
+}
+
+.como-funciona-cards:hover {
+    transform: translateY(-0.5rem); /* Eleva o card levemente */
+    border-color: var(--cor-botoes); /* Destaca a borda com a cor principal */
+}
+
+.card-icon {
+    background-color: rgba(0, 255, 102, 0.1); /* Verde com 10% de opacidade */
+    color: var(--cor-botoes);                 /* Cor do ícone vinda da sua variável */
+    padding: 1rem;
+    border-radius: 50%;                       /* Torna o fundo perfeitamente circular */
+    margin-bottom: 1.5rem;                    /* Espaço entre ícone e título */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iniciar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8rem; /* Cria um espaço generoso antes do rodapé */
+}
+
+.iniciar-plano {
+    background-color: var(--cor-botoes);
+    color: var(--cor-fundo);
+    font-size: 1.125rem;   
+    font-weight: 700;       /* Peso máximo para autoridade visual */
+    padding: 1rem 2.5rem;   /* Espaçamento interno generoso em rem */
+    border-radius: 0.75rem; /* Cantos arredondados modernos */
+    display: inline-block;
+    transition: all 0.3s ease; /* Suaviza todas as transições */
+    cursor: pointer;
+}
+
+.iniciar-plano:hover {
+    transform: scale(1.05); /* Aumenta levemente o tamanho */
+    filter: brightness(1.1); /* Deixa o verde levemente mais brilhante */
+    box-shadow: 0 0.5rem 1.5rem rgba(0, 255, 102, 0.3); /* Adiciona um brilho suave ao fundo */
+}
+
+/* Rodapé */
+.rodape {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #111111;
+    padding: 4rem 5rem;
+    border-top: 1px solid var(--cor-cards);
+}
+
+.rodape-logo-container, 
+.rodape-copyright-container, 
+.rodape-links {
+    flex: 1; 
+    display: flex;
+    align-items: center;
+}
+
+.rodape-logo-container img {
+    height: 4rem; /* Agora o seletor está correto: imagem dentro do contêiner */
+    width: auto;
+}
+
+.rodape-copyright-container {
+    justify-content: center; /* Centraliza o texto no bloco do meio */
+}
+
+.rodape-copyright-container p {
+    color: var(--cor-texto-texto-2);
+    font-size: 0.875rem;
+}
+
+.rodape-links {
+    flex-direction: column;
+    align-items: flex-end; /* Alinha os links à direita */
+    gap: 0.5rem;
+}
+
+.rodape-links a {
+    color: var(--cor-texto-texto-2);
+    font-size: 0.875rem;
+    transition: color 0.3s ease;
+}
+
+.rodape-links a:hover {
+    color: var(--cor-botoes); /* Feedback visual no hover */
+}
+
+/* ========================================= */
+/* RESPONSIVIDADE (Tablets e Celulares)      */
+/* ========================================= */
+
+/* Estilização da Calculadora de Pace */
+#calculadora-pace {
+    text-align: center;
+    margin: 4rem auto 6rem; /* Centraliza a seção e dá espaçamento vertical */
+    max-width: 40rem;
+    padding: 0 2rem;
+}
+
+#calculadora-pace h2 {
+    font-size: var(--tamanho-titulo-secao);
+    margin-bottom: 1rem;
+}
+
+.calculadora-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Deixando o campo de entrada (input) com estilo Dark moderno */
+#input-pace {
+    background-color: var(--cor-cards);
+    border: 0.125rem solid #333;
+    border-radius: 0.5rem;
+    color: var(--cor-texto-principal);
+    padding: 0.8rem 1rem;
+    font-size: 1.125rem;
+    font-family: var(--fonte-texto);
+    width: 8rem;
+    transition: border-color 0.3s ease;
+}
+
+#input-pace:focus {
+    outline: none;
+    border-color: var(--cor-botoes); /* Brilha em verde ao clicar */
+}
+
+/* Estilização do Resultado */
+#resultado-calculo {
+    margin-top: 2.5rem;
+    min-height: 5rem; /* Evita que o site "pule" quando o resultado aparece */
+}
+
+.resultado-box {
+    background-color: rgba(0, 255, 102, 0.05);
+    border: 1px dashed var(--cor-botoes);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    display: inline-block;
+}
+
+.resultado-box h3 {
+    color: var(--cor-texto-texto-2);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.resultado-box p {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--cor-botoes);
+}
+
+.botoes-calculadora {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-secundario {
+    background-color: transparent;
+    color: var(--cor-texto-texto-2);
+    border: 1px solid #333;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-secundario:hover {
+    border-color: #ff4d4d; /* Vermelho sutil no hover */
+    color: #ff4d4d;
+}
+
+/* ========================================= */
+/* TELA DE LOGIN                             */
+/* ========================================= */
+
+.corpo-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ocupa a altura total da tela */
+    background-color: var(--cor-fundo);
+}
+
+.container-login {
+    background-color: var(--cor-cards);
+    padding: 3rem;
+    border-radius: 1rem;
+    border: 1px solid #333;
+    width: 100%;
+    max-width: 25rem; /* Largura máxima da caixa de login */
+    text-align: center;
+}
+
+.logo-login {
+    height: 3rem;
+    margin-bottom: 2rem;
+}
+
+.formulario-login h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.formulario-login p {
+    color: var(--cor-texto-texto-2);
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+}
+
+.campo-input {
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.campo-input label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--cor-texto-principal);
+}
+
+.campo-input input {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #000;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    color: #fff;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura */
+}
+
+.formulario-login .iniciar-plano {
+    width: 100%; /* Botão "Entrar" ocupa toda a largura */
+    border: none;
+    margin-top: 1rem;
+}
+
+.link-cadastro {
+    margin-top: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--cor-texto-texto-2);
+}
+
+.link-cadastro a {
+    color: var(--cor-botoes);
+    font-weight: 600;
+}
+
+/* Ajustes para o contêiner de senha com ícone */
+.campo-senha-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.campo-senha-wrapper input {
+    padding-right: 3rem; /* Espaço para o ícone não cobrir o texto */
+}
+
+.btn-mostrar-senha {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--cor-texto-texto-2);
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.btn-mostrar-senha:hover {
+    color: var(--cor-botoes);
+}
+
+.esqueci-senha {
+    display: block;
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--cor-texto-texto-2);
+    margin-top: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.esqueci-senha:hover {
+    color: var(--cor-botoes);
+}
+
+.requisitos-senha {
+    margin-top: 0.75rem;
+    text-align: left;
+}
+
+.requisitos-senha p {
+    font-size: 0.75rem;
+    margin-bottom: 0.25rem;
+    color: var(--cor-texto-auxiliar); /* Cor padrão (cinza) */
+    transition: all 0.3s ease;
+}
+
+/* Classe que o JS vai aplicar quando o requisito for cumprido */
+.requisitos-senha p.valido {
+    color: var(--cor-botoes); /* Fica verde */
+    font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+    
+    /* 1. Cabeçalho e Rodapé: Empilha a logo e os links */
+    .cabecalho, .rodape {
+        padding: 2rem 1.5rem;   
+        flex-direction: column; 
+        gap: 2rem;              
+    }
+
+    /* 2. Menu de Navegação: Links um embaixo do outro e botão ajustado */
+    .cabecalho-links {
+        flex-direction: column; 
+        width: 100%;            
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .cabecalho-links-login {
+        width: auto;             
+        display: inline-block;  
+        padding: 0.75rem 2rem;
+    }
+
+    /* 3. Textos Principais: Reduz o tamanho para telas menores */
+    .conteudo {
+        margin: 3rem auto;      
+    }
+
+    .conteudo-titulo {
+        font-size: 2rem;        
+    }
+
+    .conteudo-paragrafo {
+        font-size: 1.125rem;    
+    }
+
+    /* 4. Cards do "Como Funciona": Agora usando o nome correto do seu HTML */
+    .container-cards {
+        flex-direction: column; /* Empilha os cards verticalmente */
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .como-funciona-cards {
+        width: 90%;             /* Faz o card ocupar quase toda a largura */
+        max-width: 22rem;       /* Mas impede que ele fique exageradamente largo */
+    }
+
+    /* 5. Simulador de Treino: Ajuste para os botões não ficarem "espremidos" */
+    .calculadora-container {
+        flex-direction: column; /* Empilha o campo de texto sobre os botões */
+        gap: 1.5rem;
+    }
+
+    .botoes-calculadora {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;        /* Garante que os botões quebrem linha se necessário */
+        gap: 1rem;
+    }
+
+    #input-pace {
+        width: 100%;            
+        max-width: 15rem;       /* Deixa o campo de digitação em um tamanho bom */
+    }
+
+    /* 6. Alinhamento do Rodapé no Celular */
+    .rodape-logo-container, 
+    .rodape-copyright-container, 
+    .rodape-links {
+        align-items: center;    
+        text-align: center;
+    }
+
+    .rodape-links {
+        align-items: center;    /* Centraliza os links da direita no mobile */
+    }
+    
+}
+

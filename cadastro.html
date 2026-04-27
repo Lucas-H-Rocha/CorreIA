@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - CorreAI</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body class="corpo-login">
+    <main class="container-login">
+        <a href="index.html">
+            <img src="img/logo.png" alt="Logo CorreAI" class="logo-login">
+        </a>
+        
+        <form class="formulario-login" id="form-cadastro">
+            <h2>Crie sua conta</h2>
+            <p>Preencha os dados para que nossa IA monte seu plano.</p>
+
+            <div class="campo-input">
+                <label for="nome">Nome Completo</label>
+                <input type="text" id="nome" placeholder="Seu nome" required>
+            </div>
+
+            <div class="campo-input">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" placeholder="seu@email.com" required>
+            </div>
+
+            <div style="display: flex; gap: 1rem;">
+                <div class="campo-input" style="flex: 1;">
+                    <label for="peso">Peso (kg)</label>
+                    <input type="number" id="peso" placeholder="70" step="0.1" required>
+                </div>
+                <div class="campo-input" style="flex: 1;">
+                    <label for="frequencia">Dias/Semana</label>
+                    <input type="number" id="frequencia" placeholder="3" min="1" max="7" required>
+                </div>
+            </div>
+
+            <div class="campo-input">
+                <label for="pace-cadastro">Pace Médio Atual (min/km)</label>
+                <input type="number" id="pace-cadastro" placeholder="Ex: 5.30" step="0.01" required>
+            </div>
+
+            <div class="campo-input">
+                <label for="senha">Senha</label>
+                <div class="campo-senha-wrapper">
+                    <input type="password" id="senha" placeholder="••••••••" required>
+                    <button type="button" class="btn-mostrar-senha" onclick="toggleSenha('senha')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </button>
+                </div>
+                <div class="requisitos-senha">
+                    <p id="req-comprimento">● No mínimo 8 caracteres</p>
+                    <p id="req-maiuscula">● Uma letra maiúscula</p>
+                    <p id="req-numero">● Pelo menos um número</p>
+                    <p id="req-especial">● Um caractere especial (@$!%*?&)</p>
+                </div>
+            </div>
+
+            <div class="campo-input">
+                <label for="confirmar-senha">Confirmar Senha</label>
+                <div class="campo-senha-wrapper">
+                    <input type="password" id="confirmar-senha" placeholder="••••••••" required>
+                    <button type="button" class="btn-mostrar-senha" onclick="toggleSenha('confirmar-senha')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    </button>
+                </div>
+                <p id="erro-confirmacao" style="color: #ff4d4d; font-size: 0.75rem; margin-top: 0.5rem; display: none;">As senhas não coincidem.</p>
+            </div>
+
+            <button type="submit" id="btn-registrar" class="iniciar-plano" disabled>Criar Conta</button>
+            
+            <p class="link-cadastro">Já tem conta? <a href="login.html">Faça login</a></p>
+        </form>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
