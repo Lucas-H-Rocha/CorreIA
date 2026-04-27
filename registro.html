@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Treinos - CorreAI</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body class="dashboard-page">
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="header-logo">Corre<span class="logo-ai">AI</span></a>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-link">
+                <span class="icon">🏠</span> Meu Dashboard
+            </a>
+            <a href="registro.html" class="nav-link active">
+                <span class="icon">📝</span> Registro de Treinos
+            </a>
+            <a href="rotas.html" class="nav-link">
+                <span class="icon">📍</span> Rotas
+            </a>
+            <a href="planos.html" class="nav-link">
+                <span class="icon">🎯</span> Planos de Treinamento
+            </a>
+            <a href="conta.html" class="nav-link">
+                <span class="icon">👤</span> Conta
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="badge-meta">
+                <p class="label-meta">Meta Mensal</p>
+                <h4 class="valor-meta">87 / 100 km</h4>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 87%;"></div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="main-header">
+            <div class="header-info">
+                <h1>Registro de Treinos</h1>
+                <p class="texto-secundario">Histórico completo de suas corridas e evolução detalhada.</p>
+            </div>
+        </header>
+
+        <section class="filtros-historico">
+            <div class="grupo-filtros">
+                <button class="btn-filtro active">Todos</button>
+                <button class="btn-filtro">Este Mês</button>
+                <button class="btn-filtro">Este Ano</button>
+            </div>
+        </section>
+
+        <section class="secao-historico">
+            <div class="card">
+                <div class="card-header-flex">
+                    <h3>Treinos Recentes</h3>
+                    <span class="contador-registros">Total: <span id="total-treinos">0</span> treinos</span>
+                </div>
+
+                <div id="lista-treinos-detalhada" class="lista-historico-pro">
+                    <p class="status-carregamento">Carregando histórico de performance...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

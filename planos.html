@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planos de Treinamento - CorreAI</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body class="dashboard-page">
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="header-logo">Corre<span class="logo-ai">AI</span></a>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-link">
+                <span class="icon">🏠</span> Meu Dashboard
+            </a>
+            <a href="registro.html" class="nav-link">
+                <span class="icon">📝</span> Registro de Treinos
+            </a>
+            <a href="rotas.html" class="nav-link">
+                <span class="icon">📍</span> Rotas
+            </a>
+            <a href="planos.html" class="nav-link active">
+                <span class="icon">🎯</span> Planos de Treinamento
+            </a>
+            <a href="conta.html" class="nav-link">
+                <span class="icon">👤</span> Conta
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="badge-meta">
+                <p class="label-meta">Meta Mensal</p>
+                <h4 class="valor-meta">87 / 100 km</h4>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 87%;"></div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="main-header">
+            <div class="header-info">
+                <h1>Planos de Treinamento</h1>
+                <p class="texto-secundario">Escolha o desafio ideal para o seu nível e objetivo atual.</p>
+            </div>
+        </header>
+
+        <section class="grid-planos">
+            
+            <div class="card card-plano">
+                <div class="plano-tag tag-sucesso">Iniciante</div>
+                <div class="plano-header">
+                    <span class="icon-grande">🟢</span>
+                    <h3>5K em 4 Semanas</h3>
+                </div>
+                <p class="plano-descricao">Foco em ganhar resistência para completar seus primeiros 5km sem parar.</p>
+                <div class="plano-metadados">
+                    <div class="meta-item"><span>📅</span> 4 Semanas</div>
+                    <div class="meta-item"><span>📈</span> 3x por semana</div>
+                </div>
+                <button class="btn-primary btn-full btn-sucesso" onclick="alert('Plano 5K selecionado! A nossa IA ajustou a sua rotina no Dashboard.'); window.location.href='dashboard.html';">Quero este Plano</button>
+            </div>
+
+            <div class="card card-plano plano-destaque">
+                <div class="plano-tag tag-primario">Intermediário</div>
+                <div class="plano-header">
+                    <span class="icon-grande">🔵</span>
+                    <h3>10K Performance</h3>
+                </div>
+                <p class="plano-descricao">Ideal para quem já corre e quer baixar o tempo nos 10km com treinos de tiro.</p>
+                <div class="plano-metadados">
+                    <div class="meta-item"><span>📅</span> 8 Semanas</div>
+                    <div class="meta-item"><span>📈</span> 4x por semana</div>
+                </div>
+                <button class="btn-primary btn-full" onclick="alert('Plano 10K selecionado! Prepara-te para evoluir.'); window.location.href='dashboard.html';">Quero este Plano</button>
+            </div>
+
+            <div class="card card-plano">
+                <div class="plano-tag tag-aviso">Avançado</div>
+                <div class="plano-header">
+                    <span class="icon-grande">🟠</span>
+                    <h3>Meia Maratona</h3>
+                </div>
+                <p class="plano-descricao">Treinamento estruturado para encarar os 21.1km com segurança e ritmo.</p>
+                <div class="plano-metadados">
+                    <div class="meta-item"><span>📅</span> 12 Semanas</div>
+                    <div class="meta-item"><span>📈</span> 5x por semana</div>
+                </div>
+                <button class="btn-primary btn-full btn-laranja" onclick="alert('Plano Meia Maratona selecionado! Foco total.'); window.location.href='dashboard.html';">Quero este Plano</button>
+            </div>
+
+        </section>
+
+        <section class="secao-plano-ia">
+            <div class="card card-azul-escuro">
+                <div class="ia-info">
+                    <h3>Precisa de ajustar o seu plano?</h3>
+                    <p>Altere o seu peso ou objetivo na sua Conta para a IA recalcular o seu cronograma.</p>
+                </div>
+                <div class="ia-acao">
+                    <a href="conta.html" class="btn-primary btn-branco">Atualizar Metas na Conta</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

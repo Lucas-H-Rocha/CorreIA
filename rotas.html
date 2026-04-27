@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rotas - CorreAI</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body class="dashboard-page">
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="header-logo">Corre<span class="logo-ai">AI</span></a>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-link">
+                <span class="icon">🏠</span> Meu Dashboard
+            </a>
+            <a href="registro.html" class="nav-link">
+                <span class="icon">📝</span> Registro de Treinos
+            </a>
+            <a href="rotas.html" class="nav-link active">
+                <span class="icon">📍</span> Rotas
+            </a>
+            <a href="planos.html" class="nav-link">
+                <span class="icon">🎯</span> Planos de Treinamento
+            </a>
+            <a href="conta.html" class="nav-link">
+                <span class="icon">👤</span> Conta
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="badge-meta">
+                <p class="label-meta">Meta Mensal</p>
+                <h4 class="valor-meta">87 / 100 km</h4>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 87%;"></div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="main-header">
+            <div class="header-info">
+                <h1>Meus Locais de Treino</h1>
+                <p class="texto-secundario">Registe os detalhes dos seus percursos favoritos para consultar mais tarde.</p>
+            </div>
+        </header>
+
+        <section class="grid-rotas">
+            <div class="card" style="text-align: center; padding: 4rem 2rem;">
+                <span style="font-size: 3rem; opacity: 0.5;">🗺️</span>
+                <h3 style="margin-top: 1rem;">Nenhum local registado</h3>
+                <p class="texto-secundario" style="margin-bottom: 1.5rem;">Ainda não guardou nenhum percurso frequente.</p>
+                <button class="btn-primary" onclick="alert('Em breve: Formulário para guardar as características (piso, altimetria) dos seus locais de corrida habituais!');">Adicionar Novo Local</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

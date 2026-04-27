@@ -6,36 +6,51 @@
     <title>Login - CorreAI</title>
     <link rel="stylesheet" href="style/style.css">
 </head>
-<body class="corpo-login">
-    <main class="container-login">
-        <a href="index.html">
-            <img src="img/logo.png" alt="Logo CorreAI" class="logo-login">
-        </a>
-        
-        <form class="formulario-login">
-            <h2>Bem-vindo de volta</h2>
-            <p>Acesse sua conta para ver seus planos de treino.</p>
+<body class="auth-page">
 
-            <div class="campo-input">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" placeholder="seu@email.com" required>
-            </div>
-
-            <div class="campo-input">
-                <label for="senha">Senha</label>
-                <div class="campo-senha-wrapper">
-                    <input type="password" id="senha" placeholder="••••••••" required>
-                    <button type="button" class="btn-mostrar-senha" onclick="toggleSenha('senha')">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                    </button>
-                </div>
-                <a href="#" class="esqueci-senha">Esqueci a senha</a>
-            </div>
-
-            <button type="submit" class="iniciar-plano">Entrar</button>
+    <main class="auth-container">
+        <div class="auth-card card">
             
-            <p class="link-cadastro">Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
-        </form>
+            <a href="index.html" class="btn-voltar">
+                <svg class="icon-svg" style="width: 16px; height: 16px;" viewBox="0 0 24 24" stroke="currentColor"><path d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
+                Voltar
+            </a>
+
+            <div style="display: flex; justify-content: center; margin-bottom: 2rem;">
+                <a href="index.html" class="header-logo">Corre<span class="logo-ai">AI</span></a>
+            </div>
+
+            <div class="auth-header">
+                <h2>Bem-vindo de volta</h2>
+                <p>Aceda à sua conta para gerir os seus planos.</p>
+            </div>
+            
+            <form class="formulario-login">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" placeholder="exemplo@gmail.com" required>
+                </div>
+
+                <div class="form-group">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+                        <label style="margin-bottom: 0;">Palavra-passe</label>
+                        <a href="#" style="font-size: 0.75rem; color: var(--primary-blue); font-weight: 600; text-decoration: none;">Esqueceu-se?</a>
+                    </div>
+                    <div class="input-icon-wrapper">
+                        <input type="password" id="senha" placeholder="••••••••" required>
+                        <button type="button" class="btn-icon-toggle" onclick="toggleSenha('senha')">
+                            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" /><circle cx="12" cy="12" r="3" /></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">Entrar na Plataforma</button>
+            </form>
+
+            <footer class="auth-footer">
+                <p>Ainda não tem conta? <a href="cadastro.html" class="link-destaque">Criar conta grátis</a></p>
+            </footer>
+        </div>
     </main>
 
     <script src="js/script.js"></script>

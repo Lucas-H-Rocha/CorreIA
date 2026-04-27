@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CorreAI</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body class="dashboard-page">
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+             <a href="index.html" class="header-logo">Corre<span class="logo-ai">AI</span></a>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-link active">
+                <span class="icon">🏠</span> Meu Dashboard
+            </a>
+            <a href="registro.html" class="nav-link">
+                <span class="icon">📝</span> Registro de Treinos
+            </a>
+            <a href="rotas.html" class="nav-link">
+                <span class="icon">📍</span> Rotas
+            </a>
+            <a href="planos.html" class="nav-link">
+                <span class="icon">🎯</span> Planos de Treinamento
+            </a>
+            <a href="conta.html" class="nav-link">
+                <span class="icon">👤</span> Conta
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="badge-meta">
+                <p class="label-meta">Meta Mensal</p>
+                <h4 class="valor-meta">87 / 100 km</h4>
+                <div class="progress-bar-bg">
+                    <div id="barra-meta-mensal" class="progress-bar-fill"></div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="main-header">
+            <div class="header-info">
+                <h1 id="boas-vindas">Bem-vindo de volta, Corredor!</h1>
+                <p class="texto-secundario">Continue sua jornada rumo aos seus objetivos.</p>
+            </div>
+            <div class="header-actions">
+                <button id="btn-logout" class="btn-icon">Sair</button>
+            </div>
+        </header>
+
+        <section class="dashboard-grid">
+            <div class="card card-destaque">
+                <h3>Próxima Corrida Sugerida</h3>
+                <div class="info-corrida">
+                    <div class="detalhes-treino">
+                        <h4 id="treino-titulo">Longão de Sábado</h4>
+                        <p id="treino-meta">Meta: 10 km @ 6:00 min/km</p>
+                    </div>
+                    <button class="btn-primary btn-orange">Registrar Corrida</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Tendências de Performance</h3>
+                <div class="chart-container">
+                    <canvas id="graficoDashboard"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-registro-rapido">
+            <div class="card">
+                <h3>Registro de Novo Treino</h3>
+                <form id="form-registro-rapido" class="form-grid">
+                    <div class="form-group">
+                        <label>Data</label>
+                        <input type="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Distância (km)</label>
+                        <input type="number" placeholder="Ex: 10.5" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tempo (hh:mm)</label>
+                        <input type="time" required>
+                    </div>
+                        <div class="form-group">
+                        <label>Local / Rota</label>
+                        <input type="text" id="input-rota" placeholder="Ex: Parque da Cidade, passadeira, etc." required>
+                    </div>
+                    </div>
+                    <div class="form-actions-full">
+                        <button type="submit" class="btn-primary">Confirmar Treino</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -6,73 +6,90 @@
     <title>Cadastro - CorreAI</title>
     <link rel="stylesheet" href="style/style.css">
 </head>
-<body class="corpo-login">
-    <main class="container-login">
-        <a href="index.html">
-            <img src="img/logo.png" alt="Logo CorreAI" class="logo-login">
-        </a>
-        
-        <form class="formulario-login" id="form-cadastro">
-            <h2>Crie sua conta</h2>
-            <p>Preencha os dados para que nossa IA monte seu plano.</p>
+<body class="auth-page">
 
-            <div class="campo-input">
-                <label for="nome">Nome Completo</label>
-                <input type="text" id="nome" placeholder="Seu nome" required>
-            </div>
-
-            <div class="campo-input">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" placeholder="seu@email.com" required>
-            </div>
-
-            <div style="display: flex; gap: 1rem;">
-                <div class="campo-input" style="flex: 1;">
-                    <label for="peso">Peso (kg)</label>
-                    <input type="number" id="peso" placeholder="70" step="0.1" required>
-                </div>
-                <div class="campo-input" style="flex: 1;">
-                    <label for="frequencia">Dias/Semana</label>
-                    <input type="number" id="frequencia" placeholder="3" min="1" max="7" required>
-                </div>
-            </div>
-
-            <div class="campo-input">
-                <label for="pace-cadastro">Pace Médio Atual (min/km)</label>
-                <input type="number" id="pace-cadastro" placeholder="Ex: 5.30" step="0.01" required>
-            </div>
-
-            <div class="campo-input">
-                <label for="senha">Senha</label>
-                <div class="campo-senha-wrapper">
-                    <input type="password" id="senha" placeholder="••••••••" required>
-                    <button type="button" class="btn-mostrar-senha" onclick="toggleSenha('senha')">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                    </button>
-                </div>
-                <div class="requisitos-senha">
-                    <p id="req-comprimento">● No mínimo 8 caracteres</p>
-                    <p id="req-maiuscula">● Uma letra maiúscula</p>
-                    <p id="req-numero">● Pelo menos um número</p>
-                    <p id="req-especial">● Um caractere especial (@$!%*?&)</p>
-                </div>
-            </div>
-
-            <div class="campo-input">
-                <label for="confirmar-senha">Confirmar Senha</label>
-                <div class="campo-senha-wrapper">
-                    <input type="password" id="confirmar-senha" placeholder="••••••••" required>
-                    <button type="button" class="btn-mostrar-senha" onclick="toggleSenha('confirmar-senha')">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                    </button>
-                </div>
-                <p id="erro-confirmacao" style="color: #ff4d4d; font-size: 0.75rem; margin-top: 0.5rem; display: none;">As senhas não coincidem.</p>
-            </div>
-
-            <button type="submit" id="btn-registrar" class="iniciar-plano" disabled>Criar Conta</button>
+    <main class="auth-container container-medio">
+        <div class="auth-card card">
             
-            <p class="link-cadastro">Já tem conta? <a href="login.html">Faça login</a></p>
-        </form>
+            <a href="index.html" class="btn-voltar">
+                <svg class="icon-svg" style="width: 16px; height: 16px;" viewBox="0 0 24 24" stroke="currentColor"><path d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
+                Voltar
+            </a>
+
+            <div style="display: flex; justify-content: center; margin-bottom: 2rem;">
+                <a href="index.html" class="header-logo">Corre<span class="logo-ai">AI</span></a>
+            </div>
+
+            <div class="auth-header">
+                <h2>Crie sua conta</h2>
+                <p>Nossa IA montará seu plano personalizado em segundos.</p>
+            </div>
+            
+            <form id="form-cadastro">
+                <div class="form-group">
+                    <label>Nome Completo</label>
+                    <input type="text" id="nome" placeholder="Seu nome" required>
+                </div>
+
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" id="email" placeholder="seu@email.com" required>
+                </div>
+
+                <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+                    <div style="flex: 1;">
+                        <label style="display: block; font-size: 0.875rem; font-weight: 700; margin-bottom: 0.5rem;">Objetivo</label>
+                        <select id="distancia-alvo" style="width: 100%; padding: 1rem; border: 1px solid var(--border-color); border-radius: var(--radius-md);" required>
+                            <option value="5k">5km</option>
+                            <option value="10k">10km</option>
+                            <option value="21k">21km</option>
+                            <option value="42k">42km</option>
+                        </select>
+                    </div>
+                    <div style="flex: 1;">
+                        <label style="display: block; font-size: 0.875rem; font-weight: 700; margin-bottom: 0.5rem;">Peso (kg)</label>
+                        <input type="number" id="peso" placeholder="70" style="width: 100%; padding: 1rem; border: 1px solid var(--border-color); border-radius: var(--radius-md);" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Pace Atual (min/km)</label>
+                    <input type="number" id="pace-cadastro" placeholder="Ex: 5.30" step="0.01" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Palavra-passe</label>
+                    <div class="input-icon-wrapper">
+                        <input type="password" id="senha" placeholder="Mínimo 8 caracteres" required>
+                        <button type="button" class="btn-icon-toggle" onclick="toggleSenha('senha')">
+                            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" /><circle cx="12" cy="12" r="3" /></svg>
+                        </button>
+                    </div>
+                    <div class="requisitos-senha">
+                        <p id="req-comprimento">● No mínimo 8 caracteres</p>
+                        <p id="req-maiuscula">● Uma letra maiúscula</p>
+                        <p id="req-numero">● Pelo menos um número</p>
+                        <p id="req-especial">● Um caractere especial (@$!%*?&)</p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Confirmar Palavra-passe</label>
+                    <div class="input-icon-wrapper">
+                        <input type="password" id="confirmar-senha" placeholder="••••••••" required>
+                        <button type="button" class="btn-icon-toggle" onclick="toggleSenha('confirmar-senha')">
+                            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" /><circle cx="12" cy="12" r="3" /></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">Criar Conta e Gerar Plano</button>
+            </form>
+
+            <footer class="auth-footer">
+                <p>Já tem conta? <a href="login.html" class="link-destaque">Faça login</a></p>
+            </footer>
+        </div>
     </main>
 
     <script src="js/script.js"></script>

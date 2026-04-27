@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Conta - CorreAI</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body class="dashboard-page">
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="header-logo">Corre<span class="logo-ai">AI</span></a>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-link">
+                <span class="icon">🏠</span> Meu Dashboard
+            </a>
+            <a href="registro.html" class="nav-link">
+                <span class="icon">📝</span> Registro de Treinos
+            </a>
+            <a href="rotas.html" class="nav-link">
+                <span class="icon">📍</span> Rotas
+            </a>
+            <a href="planos.html" class="nav-link">
+                <span class="icon">🎯</span> Planos de Treinamento
+            </a>
+            <a href="conta.html" class="nav-link active">
+                <span class="icon">👤</span> Conta
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="badge-meta">
+                <p class="label-meta">Meta Mensal</p>
+                <h4 class="valor-meta">87 / 100 km</h4>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" style="width: 87%;"></div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="main-header">
+            <div class="header-info">
+                <h1>Minha Conta</h1>
+                <p class="texto-secundario">Gerencie suas informações, metas e acompanhe suas conquistas.</p>
+            </div>
+        </header>
+
+        <section class="secao-perfil-topo">
+            <div class="card card-perfil-header">
+                <div class="avatar-container">
+                    <span class="avatar-placeholder">👤</span>
+                </div>
+                <div class="perfil-info-basica">
+                    <h2 id="nome-perfil-display">Carregando...</h2>
+                    <p class="data-membro">Membro desde Janeiro 2026</p>
+                    <div class="badges-perfil">
+                        <span class="tag-status status-laranja">Corredor Ativo</span>
+                        <span class="tag-status status-sucesso">Meta Mensal 87%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid-conta-config">
+            
+            <div class="card">
+                <h3>👤 Informações Pessoais</h3>
+                <form id="form-perfil-pessoal" class="form-grid">
+                    <div class="form-group">
+                        <label>Nome Completo</label>
+                        <input type="text" id="perfil-nome" placeholder="Seu nome">
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="email" id="perfil-email" placeholder="seu@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Idade</label>
+                        <input type="number" id="perfil-idade" placeholder="Ex: 30">
+                    </div>
+                    <div class="form-group">
+                        <label>Peso (kg)</label>
+                        <input type="number" id="perfil-peso" placeholder="Ex: 75" step="0.1">
+                    </div>
+                </form>
+            </div>
+
+            <div class="card card-borda-laranja">
+                <h3>🎯 Metas e Objetivos</h3>
+                <form id="form-perfil-metas" class="form-grid">
+                    <div class="form-group">
+                        <label>Meta Mensal (km)</label>
+                        <input type="number" id="perfil-meta" placeholder="Ex: 100">
+                    </div>
+                    <div class="form-group">
+                        <label>Ritmo Alvo (min/km)</label>
+                        <input type="text" placeholder="Ex: 5:45">
+                    </div>
+                </form>
+            </div>
+
+        </section>
+
+        <section class="secao-conquistas">
+            <div class="card card-fundo-claro">
+                <h3>🎖️ Conquistas</h3>
+                <div class="conquistas-container">
+                    <div class="badge-item conquistado">
+                        <div class="badge-icon icon-verde">🏅</div>
+                        <p>Primeiro 5K</p>
+                    </div>
+                    <div class="badge-item conquistado">
+                        <div class="badge-icon icon-azul">🏆</div>
+                        <p>100 km Total</p>
+                    </div>
+                    <div class="badge-item conquistado">
+                        <div class="badge-icon icon-laranja">🎖️</div>
+                        <p>10 Treinos</p>
+                    </div>
+                    <div class="badge-item bloqueado">
+                        <div class="badge-icon icon-cinza">🔒</div>
+                        <p>Bloqueado</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="form-footer-actions">
+            <button type="button" class="btn-secundario">Cancelar</button>
+            <button type="submit" form="form-perfil-pessoal" class="btn-primary">Salvar Alterações</button>
+        </footer>
+
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
